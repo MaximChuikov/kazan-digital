@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "es5",
+    "target": "es2020",
     "lib": [
       "dom",
       "dom.iterable",
@@ -18,9 +18,38 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react-jsx"
+    "jsx": "react-jsx",
+    "baseUrl": "./",
+    "paths": {
+      "@Pages/*": [
+        "./pages/*"
+      ],
+      "@Modals/*": [
+        "./modals/*"
+      ],
+      "@Helpers/*": [
+        "./helpers/*"
+      ],
+      "@Components/*": [
+        "./components/*"
+      ],
+      "@Models/*": [
+        "./models/*"
+      ],
+      "@Assets/*": [
+        "./assets/*"
+      ],
+      "@Styles/*": [
+        "./styles/*"
+      ]
+    }
   },
+  "exclude": [
+    "build",
+    "node_modules"
+  ],
   "include": [
-    "src"
+    "src",
+    "declaration.d.ts"
   ]
 }
