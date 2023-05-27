@@ -1,39 +1,46 @@
-import TypesPoint from "../models/TypesPoint";
+import TypesPointList from "../models/TypesPointList";
+import Point from "../models/Point";
 
-export function convertToUrl(icon: TypesPoint) {
+export function convertToUrl(icon: TypesPointList) {
     const folder = '/images/icons/'
     switch (icon) {
-        case TypesPoint.Ramp:
+        case TypesPointList.Ramp:
             return folder + 'pandus.png'
-        case TypesPoint.Toilet:
+        case TypesPointList.Toilet:
             return folder + 'toilet.png'
-        case TypesPoint.Obstacle:
+        case TypesPointList.Obstacle:
             return folder + 'barier.png'
-        case TypesPoint.TrafficLightSignal:
+        case TypesPointList.TrafficLightSignal:
             return folder + 'lights.png'
-        case TypesPoint.Elevator:
+        case TypesPointList.Elevator:
             return folder + 'lift.png'
         default:
             return folder + 'gigachad.png'
     }
 }
-export function convertToTooltipDescription(icon: TypesPoint) {
+export function convertToTooltipDescription(icon: TypesPointList) {
     switch (icon) {
-        case TypesPoint.Ramp:
+        case TypesPointList.Ramp:
             return 'Пандус'
-        case TypesPoint.Toilet:
+        case TypesPointList.Toilet:
             return 'Туалет'
-        case TypesPoint.ComfortableBusStation:
+        case TypesPointList.ComfortableBusStation:
             return 'Комфортная автобусная остановка'
-        case TypesPoint.Elevator:
+        case TypesPointList.Elevator:
             return 'Лифт'
-        case TypesPoint.Obstacle:
+        case TypesPointList.Obstacle:
             return 'Препятствие'
-        case TypesPoint.TrafficLightSignal:
+        case TypesPointList.TrafficLightSignal:
             return 'Светофоры со звуком'
-        case TypesPoint.UnComfortableBusStation:
+        case TypesPointList.UnComfortableBusStation:
             return 'Необорудованная автобусная остановка'
         default:
             return null
     }
 }
+
+/*
+export function convertToColor(point : Point)
+{//1E270E
+    switch ()
+}*/

@@ -1,5 +1,5 @@
 import Point from "./models/Point";
-import TypesPoint from "./models/TypesPoint";
+import TypesPointList from "./models/TypesPointList";
 import StatusPoint from "./models/StatusPoint";
 import Evaluation from "./models/Evaluation";
 import PointController from "./controllers/PointController";
@@ -8,7 +8,7 @@ import PointController from "./controllers/PointController";
 let point1 : Point = {
     x : 5,
     y : 5,
-    type : TypesPoint.Ramp,
+    type : TypesPointList.Ramp,
     status : StatusPoint.Active,
     description : "Описание",
     evaluations : new Array<Evaluation>(),
@@ -19,7 +19,7 @@ let point1 : Point = {
 let point2 : Point = {
     x : 6,
     y : 6,
-    type : TypesPoint.Ramp,
+    type : TypesPointList.Ramp,
     status : StatusPoint.Active,
     description : "Описание",
     evaluations : new Array<Evaluation>(),

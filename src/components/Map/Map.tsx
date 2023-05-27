@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {LayerGroup, LayersControl, MapContainer, TileLayer} from "react-leaflet";
 import styles from './map.module.scss'
 import SimplePoint from "../Points/SimplePoint";
-import TypesPoint from "../../backend/models/TypesPoint";
+import TypesPointList from "../../backend/models/TypesPointList";
 import StatusPoint from "../../backend/models/StatusPoint";
 import "@Styles/ovverideMapStyle.css";
 import DraggableMarker from "@Components/DraggableMarker/DraggableMarker";
@@ -31,29 +31,29 @@ const Map = () => {
             <LayersControl position="topright">
                 <LayersControl.Overlay name="Пандусы">
                     <LayerGroup>
-                        <SimplePoint x={55.785} y={49.166} type={TypesPoint.Ramp} status={StatusPoint.Active} evaluations={[]} createDate={new Date()} />
-                        <SimplePoint x={55.755} y={49.176} type={TypesPoint.Ramp} status={StatusPoint.Active} evaluations={[]} createDate={new Date()} />
-                        <SimplePoint x={55.715} y={49.136} type={TypesPoint.Ramp} status={StatusPoint.Active} evaluations={[]} createDate={new Date()} />
-                        <SimplePoint x={55.795} y={49.106} type={TypesPoint.Ramp} status={StatusPoint.Active} evaluations={[]} createDate={new Date()} />
-                        <SimplePoint x={55.725} y={49.126} type={TypesPoint.Ramp} status={StatusPoint.Active} evaluations={[]} createDate={new Date()} />
+                        <SimplePoint x={55.785} y={49.166} type={TypesPointList.Ramp} status={StatusPoint.Active} evaluations={[]} createDate={new Date()} />
+                        <SimplePoint x={55.755} y={49.176} type={TypesPointList.Ramp} status={StatusPoint.Active} evaluations={[]} createDate={new Date()} />
+                        <SimplePoint x={55.715} y={49.136} type={TypesPointList.Ramp} status={StatusPoint.Active} evaluations={[]} createDate={new Date()} />
+                        <SimplePoint x={55.795} y={49.106} type={TypesPointList.Ramp} status={StatusPoint.Active} evaluations={[]} createDate={new Date()} />
+                        <SimplePoint x={55.725} y={49.126} type={TypesPointList.Ramp} status={StatusPoint.Active} evaluations={[]} createDate={new Date()} />
                     </LayerGroup>
                 </LayersControl.Overlay>
                 <LayersControl.Overlay name="Светофоры со звуком">
                     <LayerGroup>
-                        <SimplePoint x={55.780} y={49.164} type={TypesPoint.TrafficLightSignal} status={StatusPoint.Active} evaluations={[]} createDate={new Date()} />\
-                        <SimplePoint x={55.781} y={49.163} type={TypesPoint.TrafficLightSignal} status={StatusPoint.Active} evaluations={[]} createDate={new Date()} />
-                        <SimplePoint x={55.782} y={49.162} type={TypesPoint.TrafficLightSignal} status={StatusPoint.Active} evaluations={[]} createDate={new Date()} />
-                        <SimplePoint x={55.783} y={49.161} type={TypesPoint.TrafficLightSignal} status={StatusPoint.Active} evaluations={[]} createDate={new Date()} />
+                        <SimplePoint x={55.780} y={49.164} type={TypesPointList.TrafficLightSignal} status={StatusPoint.Active} evaluations={[]} createDate={new Date()} />\
+                        <SimplePoint x={55.781} y={49.163} type={TypesPointList.TrafficLightSignal} status={StatusPoint.Active} evaluations={[]} createDate={new Date()} />
+                        <SimplePoint x={55.782} y={49.162} type={TypesPointList.TrafficLightSignal} status={StatusPoint.Active} evaluations={[]} createDate={new Date()} />
+                        <SimplePoint x={55.783} y={49.161} type={TypesPointList.TrafficLightSignal} status={StatusPoint.Active} evaluations={[]} createDate={new Date()} />
                     </LayerGroup>
                 </LayersControl.Overlay>
                 <LayersControl.Overlay name="Лифты">
                     <LayerGroup>
-                        <SimplePoint x={55.715} y={49.112} type={TypesPoint.Elevator} status={StatusPoint.Active} evaluations={[]} createDate={new Date()} />
+                        <SimplePoint x={55.715} y={49.112} type={TypesPointList.Elevator} status={StatusPoint.Active} evaluations={[]} createDate={new Date()} />
                     </LayerGroup>
                 </LayersControl.Overlay>
                 <LayersControl.Overlay name="Туалеты">
                     <LayerGroup>
-                        <SimplePoint x={55.715} y={49.106} type={TypesPoint.Toilet} status={StatusPoint.Active}
+                        <SimplePoint x={55.715} y={49.106} type={TypesPointList.Toilet} status={StatusPoint.Active}
                                      evaluations={[]} createDate={new Date()}/>
                     </LayerGroup>
                 </LayersControl.Overlay>

@@ -1,11 +1,11 @@
-import TypesPoint from "./TypesPoint";
+import TypesPointList from "./TypesPointList";
 import StatusPoint from "./StatusPoint";
 import Evaluation from "./Evaluation";
 
 export default interface Point {
     x : number
     y : number
-    type : TypesPoint
+    type : TypesPointList
     status : StatusPoint
     description? : string
     evaluations : Array<Evaluation>
@@ -13,6 +13,4 @@ export default interface Point {
     countVotesToCreate : 0
     countVotesToDelete : 0
     createDate: Date
-
-
 }
