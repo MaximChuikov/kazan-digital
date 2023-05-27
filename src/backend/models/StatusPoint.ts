@@ -1,9 +1,10 @@
-enum TypesPoint {
+enum StatusPoint {
 
-    Creation,
-    Existence,
-    Removal,
+    Creat,
+    Active,
+    NotActive,
+    Delete
 
 }
 
-export default TypesPoint
+export default StatusPoint

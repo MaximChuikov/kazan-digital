@@ -16,6 +16,11 @@ class PointRepository {
         return JSON.parse(localStorage.getItem("points") || "")
     }
 
+    findPointByCoordinate(coordinate:string) {
+        const map = JSON.parse(localStorage.getItem("points") || "")
+        return  map.get(coordinate)
+    }
+
     constructor() {
         let map =  new Map<string,Point>()
         localStorage.setItem("points",JSON.stringify(map) )

@@ -9,7 +9,7 @@ class PointController {
         return PointRepository.getAll()
     }
 
-    deletePoint() {
+    deletePoint(coordinate : string) {
 
     }
 

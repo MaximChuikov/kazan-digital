@@ -16,12 +16,12 @@ const Map = () => {
             <LayersControl position="topright">
                 <LayersControl.Overlay name="Пандусы">
                     <LayerGroup>
-                        <SimplePoint x={55.715} y={49.166} type={TypesPoint.Ramp} status={StatusPoint.Existence} evaluations={[]} createDate={new Date()} description={"Пандус"} />
+                        <SimplePoint x={55.715} y={49.166} type={TypesPoint.Ramp} status={StatusPoint.Active} evaluations={[]} createDate={new Date()} description={"Пандус"} />
                     </LayerGroup>
                 </LayersControl.Overlay>
                 <LayersControl.Overlay name="Светофоры со звуком">
                     <LayerGroup>
-                        <SimplePoint x={55.715} y={49.166} type={TypesPoint.Ramp} status={StatusPoint.Existence} evaluations={[]} createDate={new Date()} description={"Пандус"} />
+                        <SimplePoint x={55.715} y={49.166} type={TypesPoint.Ramp} status={StatusPoint.Active} evaluations={[]} createDate={new Date()} description={"Пандус"} />
                     </LayerGroup>
                 </LayersControl.Overlay>
                 <LayersControl.Overlay name={'кнопка'} >
@@ -31,14 +31,14 @@ const Map = () => {
             <LayersControl position="topright">
                 <LayersControl.Overlay name="Лифты">
                     <LayerGroup>
-                        <SimplePoint x={55.715} y={49.166} type={TypesPoint.Ramp} status={StatusPoint.Existence} evaluations={[]} createDate={new Date()} description={"Пандус"} />
+                        <SimplePoint x={55.715} y={49.166} type={TypesPoint.Ramp} status={StatusPoint.Active} evaluations={[]} createDate={new Date()} description={"Пандус"} />
                     </LayerGroup>
                 </LayersControl.Overlay>
             </LayersControl>
             <LayersControl position="topright">
                 <LayersControl.Overlay name="Туалеты">
                     <LayerGroup>
-                        <SimplePoint x={55.715} y={49.166} type={TypesPoint.Ramp} status={StatusPoint.Existence}
+                        <SimplePoint x={55.715} y={49.166} type={TypesPoint.Ramp} status={StatusPoint.Active}
                                      evaluations={[]} createDate={new Date()} description={"Пандус"}/>
                     </LayerGroup>
                 </LayersControl.Overlay>
