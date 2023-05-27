@@ -1,5 +1,5 @@
 import React, {useCallback, useEffect, useState} from 'react';
-import {LayerGroup, LayersControl, MapContainer, TileLayer} from "react-leaflet";
+import {LayerGroup, LayersControl, MapContainer, TileLayer, useMapEvents} from "react-leaflet";
 import styles from './map.module.scss'
 import SimplePoint from "../Points/SimplePoint";
 import StatusPoint from "../../backend/models/StatusPoint";
@@ -8,26 +8,60 @@ import DraggableMarker from "@Components/DraggableMarker/DraggableMarker";
 import {LatLngExpression} from "leaflet";
 import AddMarkerBtn from "@Components/AddMarkerBtn/AddMarkerBtn";
 import TypesPoint from "../../backend/models/TypesPoint";
+import MarketModal from "@Modals/MarketModal/MarketModal";
 
 const Map = () => {
     const [canAdd, setCanAdd] = useState(false)
-    const [position, setPosition] = useState<LatLngExpression>([55.7887, 49.1221])
-    const addBtnClick = useCallback(() => setCanAdd(true), []);
+    const [isOpenModal, setIsOpenModal] = useState(false)
+    const [draggablePos, setDraggablePos] = useState<LatLngExpression | null>(null)
+    const [position, setPosition] = useState<LatLngExpression>([55.7887, 49.1221]);
+
+    const addBtnClick = useCallback(() => setIsOpenModal(true), []);
+    const modalRoot = () => {
+        return isOpenModal ? <MarketModal/> : <></>
+    }
+    const draggable = () => {
+        return draggablePos === null ? <></> : <DraggableMarker startPosition={draggablePos}/>
+    }
+    const addMarker = useCallback((e: any) => {
+        if (canAdd) {
+            const pos = e.latlng
+            if (pos) {
+                setDraggablePos(pos)
+                setCanAdd(false)
+            } else {
+                setDraggablePos(null);
+            }
+        }
+    }, [canAdd]);
     useEffect(() => {
         window.onload = () => {
             const panels = document.getElementsByClassName("leaflet-control-layers-toggle")
             const elements = Array.prototype.slice.call(panels);
             elements[0].style.backgroundImage = "url('images/setting.png')"
         }
-    }, [])
+    }, []);
+    const MapEventsWrapper = ({handleClick}: { handleClick: any }) => {
+        useMapEvents({
+            click: handleClick,
+        });
+        return <></>
+    }
     return (
-        <MapContainer className={styles.mapContainer} center={position} minZoom={13} zoom={14} scrollWheelZoom={false}>
+        <MapContainer
+            className={styles.mapContainer}
+            center={position}
+            minZoom={13}
+            zoom={14}
+            scrollWheelZoom={false}>
+            <MapEventsWrapper handleClick={addMarker}/>
             <TileLayer
                 attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             />
             <AddMarkerBtn onClick={addBtnClick}/>
-            <DraggableMarker startPosition={position}/>
+            {modalRoot()}
+            {draggable()}
             <LayersControl position="topright">
                 <LayersControl.Overlay name="Пандусы">
                     <LayerGroup>
