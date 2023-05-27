@@ -1,5 +1,9 @@
 import Point from "../models/Point";
 import PointRepository from "../repository/PointRepository";
+import Vote from "../models/Vote";
+import VoteRepository from "../repository/VoteRepository";
+import TypesVote from "../models/TypesVote";
+
 class PointController {
     addPoint(point : Point) {
         return PointRepository.savePoint(point)
@@ -33,7 +37,25 @@ class PointController {
     getCoordinate(point : Point) : string{
         return `x${point.x.toString()}y${point.y.toString()}`
     }
-    //addVoteCreate
+
+    addVote( vote : Vote,point: Point){
+        point = this.getPoint(this.getCoordinate(point))
+
+        if (!this.checkVoteUser(vote, point)) {
+            point = VoteRepository.saveVote(vote, point)
+            if(vote.typeVote == TypesVote.Creation) {
+                point.countVotesToCreate!!++
+            }
+            else {
+                point.countVotesToDelete!!++
+            }
+            PointRepository.savePoint(point)
+        }
+    }
+
+    checkVoteUser(vote : Vote, point: Point) : Boolean {
+        return !!point.votes.find(value => value.userId===vote.userId)
+    }
 }
 
 export default new PointController()
