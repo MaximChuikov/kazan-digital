@@ -1,4 +1,4 @@
-import {useCallback, useMemo, useRef, useState} from "react";
+import React, {useCallback, useMemo, useRef, useState} from "react";
 import {Marker, Popup} from "react-leaflet";
 import {LatLngExpression} from "leaflet";
 
@@ -24,11 +24,12 @@ const DraggableMarker = ({startPosition}: { startPosition: LatLngExpression }) =
 
     return (
         <Marker
+
             draggable={draggable}
             eventHandlers={eventHandlers}
             position={position}
             ref={markerRef}
-            >
+        >
             <Popup minWidth={90}>
         <span onClick={toggleDraggable}>
           {draggable
