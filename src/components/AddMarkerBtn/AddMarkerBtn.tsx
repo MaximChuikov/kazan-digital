@@ -8,7 +8,7 @@ const AddMarkerBtn = ({onClick}: { onClick?: () => void }) => {
                 <img src={"/images/add_market.png"} alt={"add market"}/>
             </div>
             <span className={styles.addMarketText}>
-                добавить точку
+                Добавить точку
             </span>
         </div>
     )
