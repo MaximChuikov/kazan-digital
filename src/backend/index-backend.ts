@@ -5,7 +5,6 @@ import Evaluation from "./models/Evaluation";
 import PointController from "./controllers/PointController";
 import EvaluationController from "./controllers/EvaluationController";
 
-
 let point1 : Point = {
     x : 5,
     y : 5,

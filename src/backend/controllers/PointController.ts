@@ -30,6 +30,9 @@ class PointController {
         return  PointRepository.savePoint(point)
     }
 
+    getCoordinate(point : Point) : string{
+        return `x${point.x.toString()}y${point.y.toString()}`
+    }
     //addVoteCreate
 }
 
