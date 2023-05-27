@@ -4,6 +4,7 @@ import styles from './map.module.scss'
 import SimplePoint from "../Points/SimplePoint";
 import TypesPoint from "../../backend/models/TypesPoint";
 import StatusPoint from "../../backend/models/StatusPoint";
+import "@Styles/ovverideMapStyle.scss";
 
 const Map = () => {
     return (
@@ -15,7 +16,8 @@ const Map = () => {
             <LayersControl position="topright">
                 <LayersControl.Overlay name="Точки">
                     <LayerGroup>
-                        <SimplePoint x={55.715} y={49.166} type={TypesPoint.Ramp} status={StatusPoint.Existence} evaluations={[]} createDate={new Date()} description={"Пандус"} />
+                        <SimplePoint x={55.715} y={49.166} type={TypesPoint.Ramp} status={StatusPoint.Existence}
+                                     evaluations={[]} createDate={new Date()} description={"Пандус"}/>
                     </LayerGroup>
                 </LayersControl.Overlay>
             </LayersControl>
