@@ -6,6 +6,7 @@ import PointController from "./controllers/PointController";
 import EvaluationController from "./controllers/EvaluationController";
 import Vote from "./models/Vote";
 import TypesVote from "./models/TypesVote";
+import {data} from "./data";
 
 let point1 : Point = {
     x : 5,
@@ -67,3 +68,36 @@ EvaluationController.addEvaluation(evaluation1,point2)
 EvaluationController.addEvaluation(evaluation2,point2)
 console.log(point2)
 console.log(PointController.getAllPoint())
+
+const typeMap = new Map<string,number>([
+    ["Ramp",0],
+    ["Elevator", 1],
+    ["TrafficLightSignal", 2],
+    ["Toilet", 3],
+    ["ComfortableBusStation", 4],
+    ["Obstacle", 5]
+])
+
+for (let i of data){
+
+
+    let user :  Point = {
+    x: i.x,
+    y: i.y,
+        // @ts-ignore
+    type : typeMap[i.type],
+    status : 1,
+    description : i.description,
+    evaluations : i.evaluations,
+    votes : i.votes,
+    rating  : 0,
+    countVotesToCreate : 0,
+    countVotesToDelete : 0,
+    createDate: new Date()
+    }
+    PointController.addPoint(user)
+}
+
+console.log(PointController.getAllPoint())
+
+
