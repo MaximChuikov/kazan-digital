@@ -1,14 +1,20 @@
 import Evaluation from "../models/Evaluation";
+import EvaluationRepository from "../repository/EvaluationRepository";
+import Point from "../models/Point";
+import PointController from "./PointController";
 
 class EvaluationController {
-    async addEvaluation( evaluation : Evaluation) {
+    addEvaluation( evaluation : Evaluation, point: Point) : Point {
 
-    }
+       // if(checkCreateUser()){
+        point = EvaluationRepository.saveEvaluation(evaluation, point)
+        return  PointController.calculateRating(point)
+        }
 
-    async deleteEvaluation() {
 
-    }
-
+   // checkCreateUser() : Boolean {
+     //   return false;
+    //}
 
 }
 

@@ -3,6 +3,7 @@ import TypesPoint from "./models/TypesPoint";
 import StatusPoint from "./models/StatusPoint";
 import Evaluation from "./models/Evaluation";
 import PointController from "./controllers/PointController";
+import EvaluationController from "./controllers/EvaluationController";
 
 
 let point1 : Point = {
@@ -27,9 +28,19 @@ let point2 : Point = {
     countVotesToDelete : 0,
     createDate: new Date(2002,5,20)
 }
-
+let evaluation1 : Evaluation  ={
+    userId : "user",
+    score : 2,
+    createDate: new Date()
+}
+let evaluation2 : Evaluation  ={
+    userId : "user",
+    score : 1,
+    createDate: new Date()
+}
 PointController.addPoint(point1)
 PointController.addPoint(point2)
-let point = PointController.deletePoint(`x${point1.x.toString()}y${point1.y.toString()}`)
-console.log(point)
+EvaluationController.addEvaluation(evaluation1,point2)
+EvaluationController.addEvaluation(evaluation2,point2)
+console.log(point2)
 console.log(PointController.getAllPoint())

@@ -9,8 +9,8 @@ export default interface Point {
     status : StatusPoint
     description? : string
     evaluations : Array<Evaluation>
-    rating?  : 0
-    countVotesToCreate? : 0
-    countVotesToDelete? : 0
+    rating?  : number
+    countVotesToCreate? : number
+    countVotesToDelete? : number
     createDate: Date
 }
