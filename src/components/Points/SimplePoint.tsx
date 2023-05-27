@@ -1,10 +1,17 @@
 import React from 'react';
 import Point from "../../backend/models/Point"
-import {Circle, Marker, Tooltip} from "react-leaflet";
+import {Circle, ImageOverlay, Marker, Tooltip} from "react-leaflet";
+import {Icon, LatLngBounds, LatLngBoundsExpression, LatLngTuple} from "leaflet";
+import convertPointTypeToUrl from "../../backend/utils/enumTo";
 
 const SimplePoint = (point: Point) => {
+    const radius = 0.001
+    const imageBounds: LatLngBoundsExpression = [[point.x - radius, point.y - radius], [point.x + radius, point.y + radius]];
     return (
-        <Marker position={[point.x, point.y]}>
+        <Marker position={[point.x, point.y]} icon={new Icon({
+            iconUrl: convertPointTypeToUrl(point.type),
+            iconSize: [30, 30]
+        })}>
             <Tooltip>
                 {point.description}
             </Tooltip>
