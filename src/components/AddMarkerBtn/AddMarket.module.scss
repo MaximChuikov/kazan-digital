@@ -1,0 +1,31 @@
+.addMarket {
+  position: absolute;
+  top: 89px;
+  left: 0;
+  z-index: 1000;
+}
+
+.addMarketBtn {
+  border-radius: 5px;
+  background: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 32px;
+  height: 32px;
+  margin-left: 12px;
+  img {
+    width: 30px;
+    height: 30px;
+  }
+}
+
+.addMarketText {
+  margin-left: 8px;
+  text-align: center;
+  display: block;
+  width: 48px;
+  margin-top: 8px;
+  font-weight: 400;
+  font-size: 12px;
+}
