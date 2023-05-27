@@ -10,7 +10,7 @@ export default interface Point {
     description? : string
     evaluations : Array<Evaluation>
     rating?  : 0
-    countVotesToCreate : 0
-    countVotesToDelete : 0
+    countVotesToCreate? : 0
+    countVotesToDelete? : 0
     createDate: Date
 }
