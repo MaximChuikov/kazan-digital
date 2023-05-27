@@ -1,7 +1,7 @@
 import React from 'react';
 import {Route, Routes} from 'react-router-dom';
 import styles from './App.module.scss';
-import Map from "./components/Map";
+import Map from "./components/Map/Map";
 import 'leaflet/dist/leaflet.css'
 
 function App() {
