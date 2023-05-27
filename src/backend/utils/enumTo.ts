@@ -1,46 +1,67 @@
-import TypesPointList from "../models/TypesPointList";
-import Point from "../models/Point";
+import TypesPoint from "../models/TypesPoint";
 
-export function convertToUrl(icon: TypesPointList) {
+export function convertToUrl(icon: TypesPoint) {
     const folder = '/images/icons/'
     switch (icon) {
-        case TypesPointList.Ramp:
+        case TypesPoint.Ramp:
             return folder + 'pandus.png'
-        case TypesPointList.Toilet:
+        case TypesPoint.Toilet:
             return folder + 'toilet.png'
-        case TypesPointList.Obstacle:
+        case TypesPoint.Obstacle:
             return folder + 'barier.png'
-        case TypesPointList.TrafficLightSignal:
+        case TypesPoint.TrafficLightSignal:
             return folder + 'lights.png'
-        case TypesPointList.Elevator:
+        case TypesPoint.Elevator:
             return folder + 'lift.png'
         default:
             return folder + 'gigachad.png'
     }
 }
-export function convertToTooltipDescription(icon: TypesPointList) {
+export function convertToTooltipDescription(icon: TypesPoint) {
     switch (icon) {
-        case TypesPointList.Ramp:
+        case TypesPoint.Ramp:
             return 'Пандус'
-        case TypesPointList.Toilet:
+        case TypesPoint.Toilet:
             return 'Туалет'
-        case TypesPointList.ComfortableBusStation:
+        case TypesPoint.ComfortableBusStation:
             return 'Комфортная автобусная остановка'
-        case TypesPointList.Elevator:
+        case TypesPoint.Elevator:
             return 'Лифт'
-        case TypesPointList.Obstacle:
+        case TypesPoint.Obstacle:
             return 'Препятствие'
-        case TypesPointList.TrafficLightSignal:
+        case TypesPoint.TrafficLightSignal:
             return 'Светофоры со звуком'
-        case TypesPointList.UnComfortableBusStation:
-            return 'Необорудованная автобусная остановка'
         default:
             return null
     }
 }
+export function convertToRGB(icon: TypesPoint){
+    switch (icon) {
+        case TypesPoint.Ramp:
+            return  "#9575CD"
+        case TypesPoint.Toilet:
+            return "#4FC3F7"
+        case TypesPoint.ComfortableBusStation:
+            return "#4DB6AC"
+        case TypesPoint.Elevator:
+            return "#81C784"
+        case TypesPoint.TrafficLightSignal:
+            return "#FFD54F"
+        case TypesPoint.Obstacle:
+            return "#D32F2F"
+        default:
+            return "#FFFFFF"
+    }
+}
 
-/*
-export function convertToColor(point : Point)
-{//1E270E
-    switch ()
-}*/
+export function convertToOpacity(rating : number ) {
+    if(rating < 1){
+        return 0.25
+    }
+    else if(rating < 2){
+        return 0.5
+    }
+    else {
+        return 1
+    }
+}
