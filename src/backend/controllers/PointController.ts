@@ -24,9 +24,16 @@ class PointController {
     }
 
     calculateRating(point : Point) : Point {
+        console.log(point)
+        console.log(point.evaluations)
         point.rating =  point.evaluations.map(e => e.score).reduce((pV, cur) => pV + cur) / point.evaluations.length
         return  PointRepository.savePoint(point)
     }
+
+    getCoordinate(point : Point) : string{
+        return `x${point.x.toString()}y${point.y.toString()}`
+    }
+    //addVoteCreate
 }
 
 export default new PointController()
