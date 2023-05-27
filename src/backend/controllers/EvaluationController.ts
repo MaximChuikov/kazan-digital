@@ -1,6 +1,6 @@
 import Evaluation from "../models/Evaluation";
 
-export default class EvaluationController {
+class EvaluationController {
     async addEvaluation( evaluation : Evaluation) {
 
     }
@@ -11,3 +11,5 @@ export default class EvaluationController {
 
 
 }
+
+export default new EvaluationController()

@@ -1,11 +1,15 @@
 import Point from "../models/Point";
-
-export default class PointController {
-    async savePoint(point : Point) {
-
+import PointRepository from "../repository/PointRepository";
+class PointController {
+    addPoint(point : Point) {
+        return PointRepository.savePoint(point)
     }
 
-    async deletePoint() {
+    getAllPoint(){
+        return PointRepository.getAll()
+    }
+
+    deletePoint(coordinate : string) {
 
     }
 
@@ -13,3 +17,4 @@ export default class PointController {
 
     }
 }
+export default new PointController()
