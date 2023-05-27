@@ -14,7 +14,12 @@ class PointRepository {
     }
 
     getAll() : Array<Point> {
-        return JSON.parse(localStorage.getItem("points") || "")
+        let map : Map<string,Point> = new Map(Object.entries(JSON.parse(localStorage.getItem("points") || "")));
+        return Array.from(map, ([key,value]) => (value ));
+    }
+
+    getAllUserPoint() : Array<Point> {
+        return this.getAll().filter(e => e.status !== StatusPoint.Delete)
     }
 
     findPointByCoordinate(coordinate:string) : Point {

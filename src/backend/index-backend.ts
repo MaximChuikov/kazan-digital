@@ -8,6 +8,32 @@ import Vote from "./models/Vote";
 import TypesVote from "./models/TypesVote";
 import {data} from "./data";
 
+const typeMap = new Map<string,number>([
+    ["Ramp",0],
+    ["Elevator", 1],
+    ["TrafficLightSignal", 2],
+    ["Toilet", 3],
+    ["ComfortableBusStation", 4],
+    ["Obstacle", 5]
+])
+for (let i of data){
+    let point :  Point = {
+        x: i.x,
+        y: i.y,
+        // @ts-ignore
+        type : typeMap[i.type],
+        status : 1,
+        description : i.description,
+        evaluations : i.evaluations,
+        votes : i.votes,
+        rating  : 0,
+        countVotesToCreate : 0,
+        countVotesToDelete : 0,
+        createDate: new Date()
+    }
+    PointController.addPoint(point)
+}
+
 let point1 : Point = {
     x : 5,
     y : 5,
@@ -16,6 +42,7 @@ let point1 : Point = {
     description : "Описание",
     evaluations : new Array<Evaluation>(),
     votes : new Array<Vote>(),
+    rating : 0,
     countVotesToCreate : 0,
     countVotesToDelete : 0,
     createDate: new Date(2002,5,20)
@@ -24,12 +51,13 @@ let point2 : Point = {
     x : 6,
     y : 6,
     type : TypesPoint.Ramp,
-    status : StatusPoint.Active,
+    status : StatusPoint.Creat,
     description : "Описание",
+    rating : 5,
     evaluations : new Array<Evaluation>(),
     votes : new Array<Vote>(),
-    countVotesToCreate : 0,
-    countVotesToDelete : 0,
+    countVotesToCreate : 4,
+    countVotesToDelete : 9,
     createDate: new Date(2002,5,20)
 }
 let evaluation1 : Evaluation  ={
@@ -44,7 +72,7 @@ let evaluation2 : Evaluation  ={
 }
 let vote1 : Vote  ={
     userId : "user",
-    typeVote : TypesVote.Creation
+    typeVote : TypesVote.Removal
 }
 let vote2 : Vote  ={
     userId : "user",
@@ -52,7 +80,7 @@ let vote2 : Vote  ={
 }
 let vote3 : Vote  ={
     userId : "user1",
-    typeVote : TypesVote.Creation
+    typeVote : TypesVote.Removal
 }
 let vote4 : Vote  ={
     userId : "user2",
@@ -66,38 +94,11 @@ PointController.addVote(vote3,point2)
 PointController.addVote(vote4,point2)
 EvaluationController.addEvaluation(evaluation1,point2)
 EvaluationController.addEvaluation(evaluation2,point2)
+
+console.log(PointController.getAllPoint())
+PointController.deletePoint(PointController.getCoordinate(point2))
 console.log(point2)
 console.log(PointController.getAllPoint())
 
-const typeMap = new Map<string,number>([
-    ["Ramp",0],
-    ["Elevator", 1],
-    ["TrafficLightSignal", 2],
-    ["Toilet", 3],
-    ["ComfortableBusStation", 4],
-    ["Obstacle", 5]
-])
-
-for (let i of data){
-
-
-    let user :  Point = {
-    x: i.x,
-    y: i.y,
-        // @ts-ignore
-    type : typeMap[i.type],
-    status : 1,
-    description : i.description,
-    evaluations : i.evaluations,
-    votes : i.votes,
-    rating  : 0,
-    countVotesToCreate : 0,
-    countVotesToDelete : 0,
-    createDate: new Date()
-    }
-    PointController.addPoint(user)
-}
-
-console.log(PointController.getAllPoint())
-
-
+console.log(PointController.getPoint(PointController.getCoordinate(point2)))
+console.log(PointController.getAllUserPoint())
