@@ -5,6 +5,5 @@ enum TypesPoint {
     Toilet,
     ComfortableBusStation,
     Obstacle
-
 }
 export default TypesPoint

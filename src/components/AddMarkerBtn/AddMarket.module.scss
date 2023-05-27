@@ -29,3 +29,14 @@
   font-weight: 700;
   font-size: 12px;
 }
+
+.rayon {
+  position: absolute;
+  top: 90px;
+  right: 0;
+  z-index: 1000;
+
+  .addMarketText {
+    margin-right: 8px;
+  }
+}
