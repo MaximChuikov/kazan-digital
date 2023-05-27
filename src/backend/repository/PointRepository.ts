@@ -5,7 +5,8 @@ class PointRepository {
 
     savePoint(point : Point) {
         let points: Map<string,Point> = JSON.parse(localStorage.getItem("points")|| "") as Map<string,Point>
-        points[(point.x.toString()+point.y.toString())] = point // todo не трогать
+        // @ts-ignore
+        points[(`x${point.x.toString()}y${point.y.toString()}`)] = point // todo не трогать
         /*points.set(point.x.toString()+point.y.toString(), point)*/
         localStorage.setItem("points",JSON.stringify(points) )
         return point
