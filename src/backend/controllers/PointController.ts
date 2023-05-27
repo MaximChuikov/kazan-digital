@@ -9,12 +9,19 @@ class PointController {
         return PointRepository.getAll()
     }
 
-    deletePoint(coordinate : string) {
-
+    getPoint(coordinate : string) {
+        return PointRepository.findPointByCoordinate(coordinate)
     }
 
-    async changeStatusPoint() {
+    deletePoint(coordinate : string) {
+        const point = PointRepository.findPointByCoordinate(coordinate)
 
+        if(point.countVotesToDelete <= 5){
+            return PointRepository.deleteByCoordinate(coordinate)
+        }
+        point.countVotesToDelete++
+        PointRepository.savePoint(point)
     }
 }
+
 export default new PointController()

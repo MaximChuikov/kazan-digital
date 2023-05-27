@@ -12,8 +12,8 @@ let point1 : Point = {
     status : StatusPoint.Active,
     description : "Описание",
     evaluations : new Array<Evaluation>(),
-    numberVotesToCreate : 0,
-    numberVotesToDelete : 0,
+    countVotesToCreate : 0,
+    countVotesToDelete : 0,
     createDate: new Date(2002,5,20)
 }
 let point2 : Point = {
@@ -23,13 +23,13 @@ let point2 : Point = {
     status : StatusPoint.Active,
     description : "Описание",
     evaluations : new Array<Evaluation>(),
-    numberVotesToCreate : 0,
-    numberVotesToDelete : 0,
+    countVotesToCreate : 0,
+    countVotesToDelete : 0,
     createDate: new Date(2002,5,20)
 }
 
 PointController.addPoint(point1)
 PointController.addPoint(point2)
-console.log(point1)
-console.log(point2)
+let point = PointController.deletePoint(`x${point1.x.toString()}y${point1.y.toString()}`)
+console.log(point)
 console.log(PointController.getAllPoint())
