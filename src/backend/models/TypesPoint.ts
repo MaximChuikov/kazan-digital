@@ -1,10 +1,11 @@
 enum TypesPoint {
-    Ramp  ,
-    Elevator ,
-    TrafficLightSignal ,
+    Ramp,
+    Elevator,
+    TrafficLightSignal,
     Toilet,
     ComfortableBusStation,
-    Obstacle
-
+    Obstacle,
+    ProblemPlace
 }
+
 export default TypesPoint

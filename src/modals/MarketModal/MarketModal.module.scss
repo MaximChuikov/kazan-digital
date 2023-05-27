@@ -1,4 +1,4 @@
-.modal{
+.modal {
   position: absolute;
   top: 70px;
   width: 100%;
@@ -16,11 +16,36 @@
   width: calc(100% - 24px);
   background: white;
   max-width: 400px;
-  height: auto;
+  height: 320px;
   padding: 16px;
   margin-left: 12px;
   margin-right: 12px;
   border-radius: 8px;
+
+  .modalInput {
+    margin-top: 16px;
+    width: 100%;
+    font-size: 16px;
+    line-height: 32px;
+    padding: 8px;
+    color: #000000;
+    border-radius: 5px;
+    box-sizing: border-box;
+    border: 2px solid #ABB6C8;
+  }
+
+  .modalInput::placeholder {
+    color: #ABB6C8;
+  }
+
+  .modalDescription {
+    margin-left: 2px;
+    width: 100%;
+    margin-top: 16px;
+    font-size: 16px;
+    line-height: 22px;
+    font-weight: 500;
+  }
 
   .modalText {
     display: block;
@@ -30,11 +55,42 @@
     color: #000000;
     font-weight: 600;
   }
-  .selectItem{
+
+  .radioSet {
+    margin-top: 14px;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+
+    .radioItem {
+      display: flex;
+      align-items: center;
+
+      input[type='radio']:after {
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        top: -6px;
+        left: -8px;
+        position: relative;
+        background-color: #d1d3d1;
+        content: '';
+        display: inline-block;
+        visibility: visible;
+        border: 2px solid white;
+      }
+      input[type='radio']:checked:after {
+        background-color: #000000;
+      }
+    }
+  }
+
+  .selectItem {
     outline: 2px solid lightgray;
     border-radius: 4px;
     background: #F2EDF8;
   }
+
   .modalItems {
     width: 100%;
     display: flex;
@@ -42,10 +98,11 @@
     justify-content: center;
     box-sizing: border-box;
   }
-  .modalBtn{
+
+  .modalBtn {
     cursor: pointer;
     width: 200px;
-    margin-top: 12px;
+    margin-top: 16px;
     outline: none;
     padding: 10px 20px;
     border: none;
