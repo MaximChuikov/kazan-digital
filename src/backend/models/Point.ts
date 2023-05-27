@@ -11,7 +11,7 @@ export default interface Point {
     evaluations : Array<Evaluation>
     numberVotesToCreate? : number
     numberVotesToDelete? : number
-    createDate: string //todo date
+    createDate: Date
 
 
 }
