@@ -1,14 +1,23 @@
 import TypesPoint from "../models/TypesPoint";
 
 export function convertToUrl(icon: TypesPoint) {
+    const folder = '/images/icons/'
     switch (icon) {
         case TypesPoint.Ramp:
-            return '/images/gigachad.png'
+            return folder + 'pandus.png'
+        case TypesPoint.Toilet:
+            return folder + 'toilet.png'
+        case TypesPoint.Obstacle:
+            return folder + 'barier.png'
+        case TypesPoint.TrafficLightSignal:
+            return folder + 'lights.png'
+        case TypesPoint.Elevator:
+            return folder + 'lift.png'
         default:
-            return '/images/gigachad.png'
+            return folder + 'gigachad.png'
     }
 }
-export default function convertToTooltipDescription(icon: TypesPoint) {
+export function convertToTooltipDescription(icon: TypesPoint) {
     switch (icon) {
         case TypesPoint.Ramp:
             return 'Пандус'
@@ -25,6 +34,6 @@ export default function convertToTooltipDescription(icon: TypesPoint) {
         case TypesPoint.UnComfortableBusStation:
             return 'Необорудованная автобусная остановка'
         default:
-            return ''
+            return null
     }
 }
