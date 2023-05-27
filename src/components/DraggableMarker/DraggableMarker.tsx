@@ -24,13 +24,12 @@ const DraggableMarker = ({startPosition}: { startPosition: LatLngExpression }) =
 
     return (
         <Marker
-
             draggable={draggable}
             eventHandlers={eventHandlers}
             position={position}
             ref={markerRef}
         >
-            <Popup minWidth={90}>
+            <Popup minWidth={80}>
         <span onClick={toggleDraggable}>
           {draggable
               ? 'Вы можете перемещать данный маркер, нажмите на текст чтобы зафиксировать маркер'
