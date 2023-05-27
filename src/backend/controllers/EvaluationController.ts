@@ -4,17 +4,17 @@ import Point from "../models/Point";
 import PointController from "./PointController";
 
 class EvaluationController {
-    addEvaluation( evaluation : Evaluation, point: Point) : Point {
+    addEvaluation( evaluation : Evaluation, point: Point) {
+        point = PointController.getPoint(PointController.getCoordinate(point))
 
-       // if(checkCreateUser()){
-        point = EvaluationRepository.saveEvaluation(evaluation, point)
-        return  PointController.calculateRating(point)
+        if (!this.checkEvaluationUser(evaluation, point)) {
+            point = EvaluationRepository.saveEvaluation(evaluation, point)
+            return PointController.calculateRating(point)
         }
-
-
-   // checkCreateUser() : Boolean {
-     //   return false;
-    //}
+    }
+    checkEvaluationUser(evaluation : Evaluation, point: Point) : Boolean {
+        return !!point.evaluations.find(value => value.userId===evaluation.userId)
+    }
 
 }
 
