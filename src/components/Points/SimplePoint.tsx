@@ -15,7 +15,7 @@ const SimplePoint = (point: Point) => {
             className: styles.point
         })} >
             <Tooltip>
-                {point.description || convnrtToTooltipDescription(point.type) || "Не указано"}
+                {point.description || convertToTooltipDescription(point.type) || "Не указано"}
             </Tooltip>
         </Marker>
     );
