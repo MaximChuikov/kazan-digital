@@ -13,6 +13,8 @@ const SimplePoint = (point: Point) => {
 
     const [leaveComment, setLeaveComment] = useState(false)
 
+    console.log(point.type.toLowerCase())
+
     const colorClass = `${point.type.toLowerCase()}${convertToOpacity(point.rating || 0)}`
     return (
         <Marker position={[point.x, point.y]} icon={new Icon({
