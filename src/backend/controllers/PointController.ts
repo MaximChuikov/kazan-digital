@@ -74,7 +74,7 @@ class PointController {
         return !!point.votes.find(value => value.userId===vote.userId)
     }
 
-    constructor() {
+    /*constructor() {
 
         const typeMap = new Map<string,number>([
             ["Ramp",0],
@@ -102,7 +102,7 @@ class PointController {
             this.addPoint(point)
         }
 
-    }
+    }*/
 
 }
 

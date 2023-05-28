@@ -8,20 +8,19 @@ import Vote from "./models/Vote";
 import TypesVote from "./models/TypesVote";
 import {data} from "./data";
 
-const typeMap = new Map<string,number>([
+/*const typeMap = new Map<string,number>([
     ["Ramp",0],
     ["Elevator", 1],
     ["TrafficLightSignal", 2],
     ["Toilet", 3],
     ["ComfortableBusStation", 4],
     ["Obstacle", 5]
-])
+])*/
 for (let i of data){
     let point :  Point = {
         x: i.x,
         y: i.y,
-        // @ts-ignore
-        type : typeMap[i.type],
+        type : i.type as TypesPoint ,
         status : 1,
         description : i.description,
         evaluations : i.evaluations,
@@ -31,6 +30,7 @@ for (let i of data){
         countVotesToDelete : 0,
         createDate: new Date()
     }
+    console.log()
     PointController.addPoint(point)
 }
 
