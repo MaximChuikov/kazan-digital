@@ -55,6 +55,9 @@ const Map = () => {
             position={position}
         />);
     }
+    /*const getFinishMarker = () => {
+        return isVisibleMarker? getRoadMarker():'';
+    }*/
     const addMarkerToDB = (x: number, y: number) => {
         if (term) {
             let point: Point = {
