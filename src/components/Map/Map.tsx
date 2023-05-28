@@ -1,10 +1,10 @@
 import React, {useCallback, useEffect, useState} from 'react';
-import {LayerGroup, LayersControl, MapContainer, TileLayer, useMapEvents} from "react-leaflet";
+import {LayerGroup, LayersControl, MapContainer, Marker, TileLayer, useMapEvents} from "react-leaflet";
 import styles from './map.module.scss'
 import SimplePoint from "../Points/SimplePoint";
 import "@Styles/ovverideMapStyle.css";
 import DraggableMarker from "@Components/DraggableMarker/DraggableMarker";
-import {LatLngExpression} from "leaflet";
+import {Icon, LatLngExpression} from "leaflet";
 import AddMarkerBtn from "@Components/AddMarkerBtn/AddMarkerBtn";
 import TypesPoint from "../../backend/models/TypesPoint";
 import ChangeMapStatusToRayon from "@Components/AddMarkerBtn/ChangeMapStatusToRayon";
@@ -23,6 +23,7 @@ const Map = () => {
     const [allPoints, setAllPoints] = useState(getPoints())
 
     const [map, setMap] = useState(null)
+    const [isVisibleMarker, setIsVisibleMarker] = useState(false)
     const [canAdd, setCanAdd] = useState(false)
     const [isOpenModal, setIsOpenModal] = useState(false)
     const [draggablePos, setDraggablePos] = useState<LatLngExpression | null>(null)
@@ -40,6 +41,15 @@ const Map = () => {
     }
     const modalRoot = () => {
         return isOpenModal ? <MarketModal onClose={onModalClose} closeModalPage={closeModalPage}/> : <></>
+    }
+    const getRoadMarker = (img:string,position:LatLngExpression) => {
+        return (<Marker
+            icon={new Icon({
+                iconUrl: "/images/icons/",
+                iconSize: [30, 30],
+            })}
+            position={position}
+        />);
     }
     const addMarkerToDB = (x: number, y: number) => {
         if (term) {
