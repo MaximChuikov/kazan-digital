@@ -9,7 +9,7 @@ class EvaluationController {
 
         if (!this.checkEvaluationUser(evaluation, point)) {
             point = EvaluationRepository.saveEvaluation(evaluation, point)
-            return PointController.calculateRating(point)
+            return PointController.calculateRatingPoint(point)
         }
     }
     checkEvaluationUser(evaluation : Evaluation, point: Point) : Boolean {

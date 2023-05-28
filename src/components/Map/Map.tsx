@@ -18,8 +18,12 @@ const Map = () => {
     const [position, setPosition] = useState<LatLngExpression>([55.7887, 49.1221]);
 
     const addBtnClick = useCallback(() => setIsOpenModal(true), []);
+    const onModalClose = useCallback((term:string) => {
+        setIsOpenModal(false);
+        setCanAdd(true);
+    }, []);
     const modalRoot = () => {
-        return isOpenModal ? <MarketModal/> : <></>
+        return isOpenModal ? <MarketModal onClose={onModalClose}/> : <></>
     }
     const draggable = () => {
         return draggablePos === null ? <></> : <DraggableMarker startPosition={draggablePos}/>

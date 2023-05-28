@@ -3,13 +3,14 @@ import PointRepository from "../repository/PointRepository";
 import Vote from "../models/Vote";
 import VoteRepository from "../repository/VoteRepository";
 import TypesVote from "../models/TypesVote";
+import StatusPoint from "../models/StatusPoint";
 
 class PointController {
     addPoint(point : Point) {
         return PointRepository.savePoint(point)
     }
 
-    getAllPoint(){
+    getAllPoint() : Array<Point> {
         return PointRepository.getAll()
     }
 
@@ -20,18 +21,25 @@ class PointController {
     deletePoint(coordinate : string) {
         const point = PointRepository.findPointByCoordinate(coordinate)
 
-        if(point.countVotesToDelete!! >= 5){
+        if(point.status === StatusPoint.Active && point.countVotesToDelete!! > 0){ //todo если то пометить её
+            point.status = StatusPoint.NotActive
+        }
+
+        if(point.countVotesToDelete!! >= 10){
             return PointRepository.deleteByCoordinate(coordinate)
         }
+
         point.countVotesToDelete!!++
         PointRepository.savePoint(point)
     }
 
-    calculateRating(point : Point) : Point {
-        console.log(point)
-        console.log(point.evaluations)
+    calculateRatingPoint(point : Point) : Point {
         point.rating =  point.evaluations.map(e => e.score).reduce((pV, cur) => pV + cur) / point.evaluations.length
         return  PointRepository.savePoint(point)
+    }
+
+    calculateRatingArea(points : Array<Point>) : number {
+        return points.map(e => e.rating).reduce((pV, cur) => pV + cur) / points.length
     }
 
     getCoordinate(point : Point) : string{
@@ -43,19 +51,29 @@ class PointController {
 
         if (!this.checkVoteUser(vote, point)) {
             point = VoteRepository.saveVote(vote, point)
-            if(vote.typeVote == TypesVote.Creation) {
+            if(vote.typeVote === TypesVote.Creation) {
                 point.countVotesToCreate!!++
             }
             else {
                 point.countVotesToDelete!!++
             }
+
+            if(point.status === StatusPoint.Creat && point.countVotesToCreate!! >= 5)
+                point.status = StatusPoint.Active
+
             PointRepository.savePoint(point)
         }
+    }
+
+    getAllUserPoint() : Array<Point> {
+        return PointRepository.getAllUserPoint()
     }
 
     checkVoteUser(vote : Vote, point: Point) : Boolean {
         return !!point.votes.find(value => value.userId===vote.userId)
     }
+
+
 }
 
 export default new PointController()
