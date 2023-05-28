@@ -15,7 +15,6 @@ class EvaluationController {
     checkEvaluationUser(evaluation : Evaluation, point: Point) : Boolean {
         return !!point.evaluations.find(value => value.userId===evaluation.userId)
     }
-
 }
 
 export default new EvaluationController()

@@ -1,4 +1,103 @@
 .point {
-  border: 3px solid red;
+  border: 3px solid #FFFFFF;
   border-radius: 12px;
+
+  &.ramplow {
+    border-color: #D1C4E9;
+  }
+
+  &.rampmiddle {
+    border-color: #B39DDB;
+  }
+
+  &.rampfill {
+    border-color: #9575CD;
+  }
+
+  &.toiletlow {
+    border-color: #81D4FA;
+  }
+
+  &.toiletmiddle {
+    border-color: #4FC3F7;
+  }
+
+  &.toiletfill {
+    border-color: #4FC3F7;
+  }
+
+  &.comfortablebusstationlow, &.comfortablebusstationmiddle, &.comfortablebusstationfill {
+    border-color: #4DB6AC;
+  }
+
+  &.elevatorlow {
+    border-color: #C8E6C9;
+  }
+
+  &.elevatormiddle {
+    border-color: #A5D6A7;
+  }
+
+  &.elevatorfill {
+    border-color: #81C784;
+  }
+
+  &.trafficlightsignalfill {
+    border-color: #4FC3F7;
+  }
+
+  &.trafficlightsignallow {
+    border-color: #B3E5FC;
+  }
+
+  &.trafficlightsignalmiddle {
+    border-color: #81D4FA;
+  }
+
+  &.obstaclelow {
+    border-color: #EF9A9A;
+  }
+
+  &.obstaclemiddle {
+    border-color: #EF5350;
+  }
+
+  &.obstaclefill {
+    border-color: #D32F2F;
+  }
+}
+
+.popup {
+  .header {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    font-size: 20px;
+    align-items: center;
+
+    img {
+      width: 30px;
+      height: 30px;
+    }
+  }
+
+  .buttonsContainer {
+    display: flex;
+    gap: 10px;
+
+    justify-content: space-between;
+
+    button {
+      cursor: pointer;
+      margin-top: 12px;
+      outline: none;
+      padding: 4px;
+      border: none;
+      border-radius: 8px;
+      background: #D9D9D9;
+      color: #000000;
+      font-size: 14px;
+      font-weight: 400;
+    }
+  }
 }

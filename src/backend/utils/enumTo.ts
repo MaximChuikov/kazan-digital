@@ -56,12 +56,12 @@ export function convertToRGB(icon: TypesPoint){
 
 export function convertToOpacity(rating : number ) {
     if(rating < 1){
-        return 0.25
+        return "low"
     }
     else if(rating < 2){
-        return 0.5
+        return "middle"
     }
     else {
-        return 1
+        return "full"
     }
 }
