@@ -38,6 +38,7 @@ const Map = () => {
     const onModalClose = useCallback((term: AddPointModal) => {
         setIsOpenModal(false);
         setCanAdd(true);
+        setIsVisibleMarker(false);
         setTerm(term)
     }, []);
     const closeModalPage = () => {
@@ -50,15 +51,15 @@ const Map = () => {
     const getRoadMarker = (img:string,position:LatLngExpression) => {
         return (<Marker
             icon={new Icon({
-                iconUrl: "/images/icons/",
+                iconUrl: "/images/icons/"+img,
                 iconSize: [30, 30],
             })}
             position={position}
         />);
     }
-    /*const getFinishMarker = () => {
-        return isVisibleMarker? getRoadMarker():'';
-    }*/
+    const getFinishMarker = () => {
+        return isVisibleMarker? getRoadMarker("location.png",position):'';
+    }
     const addMarkerToDB = (x: number, y: number) => {
         if (term) {
             let point: Point = {
@@ -118,7 +119,9 @@ const Map = () => {
     }
     const changePosition = (pos: { x: number, y: number }) => {
         if (map) {
+
             setPosition([pos.x, pos.y]);
+            setIsVisibleMarker(true);
             // @ts-ignore
             map.setView([pos.x, pos.y], 25);
         }
@@ -142,6 +145,7 @@ const Map = () => {
             <SearchHeader setPosition={changePosition} createRoadMock={() => {
                 navigate('/route')
             }}/>
+            {getFinishMarker()}
             {modalRoot()}
             {draggable()}
             <ChangeMapStatusToRayon/>
