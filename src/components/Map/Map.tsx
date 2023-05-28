@@ -7,7 +7,7 @@ import "@Styles/ovverideMapStyle.css";
 import DraggableMarker from "@Components/DraggableMarker/DraggableMarker";
 import {LatLngExpression} from "leaflet";
 import AddMarkerBtn from "@Components/AddMarkerBtn/AddMarkerBtn";
-import TypesPointList from "../../backend/models/TypesPoint";
+import TypesPoint from "../../backend/models/TypesPoint";
 import ChangeMapStatusToRayon from "@Components/AddMarkerBtn/ChangeMapStatusToRayon";
 import MarketModal from "@Modals/MarketModal/MarketModal";
 import AddPointModal from "../../backend/models/AddPointModal";
@@ -15,6 +15,13 @@ import PointController from "../../backend/controllers/PointController";
 import Point from "../../backend/models/Point";
 
 const Map = () => {
+
+    function getPoints() {
+        return PointController.getAllUserPoint()
+    }
+    const [allPoints, setAllPoints] = useState(getPoints())
+
+
     const [canAdd, setCanAdd] = useState(false)
     const [isOpenModal, setIsOpenModal] = useState(false)
     const [draggablePos, setDraggablePos] = useState<LatLngExpression | null>(null)
@@ -99,50 +106,47 @@ const Map = () => {
             <LayersControl position="topright">
                 <LayersControl.Overlay name="Пандусы" checked>
                     <LayerGroup>
-                        <SimplePoint x={55.785} y={49.166} type={TypesPointList.Ramp} status={StatusPoint.Active}
-                                     evaluations={[]} createDate={new Date()}/>
-                        <SimplePoint x={55.755} y={49.176} type={TypesPointList.Ramp} status={StatusPoint.Active}
-                                     evaluations={[]} createDate={new Date()}/>
-                        <SimplePoint x={55.715} y={49.136} type={TypesPointList.Ramp} status={StatusPoint.Active}
-                                     evaluations={[]} createDate={new Date()}/>
-                        <SimplePoint x={55.795} y={49.106} type={TypesPointList.Ramp} status={StatusPoint.Active}
-                                     evaluations={[]} createDate={new Date()}/>
-                        <SimplePoint x={55.725} y={49.126} type={TypesPointList.Ramp} status={StatusPoint.Active}
-                                     evaluations={[]} createDate={new Date()}/>
+                        {
+                            allPoints.filter(p => p.type === TypesPoint.Ramp).map((p, key) => (
+                                <SimplePoint key={key} {...p} />
+                            ))
+                        }
                     </LayerGroup>
                 </LayersControl.Overlay>
                 <LayersControl.Overlay name="Светофоры со звуком" checked>
                     <LayerGroup>
-                        <SimplePoint x={55.780} y={49.164} type={TypesPointList.TrafficLightSignal}
-                                     status={StatusPoint.Active} evaluations={[]} createDate={new Date()}/>\
-                        <SimplePoint x={55.781} y={49.163} type={TypesPointList.TrafficLightSignal}
-                                     status={StatusPoint.Active} evaluations={[]} createDate={new Date()}/>
-                        <SimplePoint x={55.782} y={49.162} type={TypesPointList.TrafficLightSignal}
-                                     status={StatusPoint.Active} evaluations={[]} createDate={new Date()}/>
-                        <SimplePoint x={55.783} y={49.161} type={TypesPointList.TrafficLightSignal}
-                                     status={StatusPoint.Active} evaluations={[]} createDate={new Date()}/>
+                        {
+                            allPoints.filter(p => p.type === TypesPoint.TrafficLightSignal).map((p, key) => (
+                                <SimplePoint key={key} {...p} />
+                            ))
+                        }
                     </LayerGroup>
                 </LayersControl.Overlay>
                 <LayersControl.Overlay name="Лифты" checked>
                     <LayerGroup>
-                        <SimplePoint x={55.715} y={49.112} type={TypesPointList.Elevator} status={StatusPoint.Active}
-                                     evaluations={[]} createDate={new Date()}/>
+                        {
+                            allPoints.filter(p => p.type === TypesPoint.Elevator).map((p, key) => (
+                                <SimplePoint key={key} {...p} />
+                            ))
+                        }
                     </LayerGroup>
                 </LayersControl.Overlay>
                 <LayersControl.Overlay name="Туалеты" checked>
                     <LayerGroup>
-                        <SimplePoint x={55.715} y={49.106} type={TypesPointList.Toilet} status={StatusPoint.Active}
-                                     evaluations={[]} createDate={new Date()}/>
+                        {
+                            allPoints.filter(p => p.type === TypesPoint.Toilet).map((p, key) => (
+                                <SimplePoint key={key} {...p} />
+                            ))
+                        }
                     </LayerGroup>
                 </LayersControl.Overlay>
                 <LayersControl.Overlay name="Препятствия" checked>
                     <LayerGroup>
-                        <SimplePoint x={55.725} y={49.166} type={TypesPointList.Obstacle} status={StatusPoint.Active}
-                                     evaluations={[]} createDate={new Date()}/>
-                        <SimplePoint x={55.705} y={49.163} type={TypesPointList.Obstacle} status={StatusPoint.Active}
-                                     evaluations={[]} createDate={new Date()}/>
-                        <SimplePoint x={55.765} y={49.164} type={TypesPointList.Obstacle} status={StatusPoint.Active}
-                                     evaluations={[]} createDate={new Date()}/>
+                        {
+                            allPoints.filter(p => p.type === TypesPoint.ProblemPlace).map((p, key) => (
+                                <SimplePoint key={key} {...p} />
+                            ))
+                        }
                     </LayerGroup>
                 </LayersControl.Overlay>
             </LayersControl>

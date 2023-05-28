@@ -13,7 +13,7 @@ const SimplePoint = (point: Point) => {
 
     const [leaveComment, setLeaveComment] = useState(false)
 
-    const colorClass = `${TypesPoint[point.type].toLowerCase()}${convertToOpacity(point.rating || 0)}`
+    const colorClass = `${point.type.toLowerCase()}${convertToOpacity(point.rating || 0)}`
     return (
         <Marker position={[point.x, point.y]} icon={new Icon({
             iconUrl: convertToUrl(point.type),
@@ -40,14 +40,14 @@ const SimplePoint = (point: Point) => {
                                 }
                             </h6>
                             {
-                                point.countVotesToDelete && (
+                                point.countVotesToDelete ? (
                                     <h5>
                                         {`Против этой точки проголосовало ${point.countVotesToCreate} человек(а)`}
                                     </h5>
-                                )
+                                ) : <></>
                             }
                             {
-                                point.type === TypesPoint.Obstacle ? (
+                                point.type === TypesPoint.ProblemPlace ? (
                                     <div className={styles.buttonsContainer}>
                                         <button onClick={() => PointController.addVote({
                                             userId: "хто_я",
