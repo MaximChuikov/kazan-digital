@@ -48,15 +48,20 @@ const Map = () => {
                 y: y,
                 type: term?.type,
                 status: 1,
-                description: term.description,
-                evaluations: [],
+                evaluations: [{
+                    userId: "хто_я",
+                    score: term.term,
+                    comment: term.description,
+                    createDate: new Date()
+                }],
                 votes: [],
-                rating: term.term,
+                rating: 0,
                 countVotesToCreate: 0,
                 countVotesToDelete: 0,
                 createDate: new Date()
             }
-            PointController.addPoint(point)
+            PointController.addPoint(point);
+
             setDraggablePos(null);
             setAllPoints(getPoints())
         }
@@ -94,10 +99,10 @@ const Map = () => {
         return <></>
     }
     const changePosition = (pos: { x: number, y: number }) => {
-        if(map){
+        if (map) {
             setPosition([pos.x, pos.y]);
             // @ts-ignore
-            map.setView([pos.x, pos.y],25);
+            map.setView([pos.x, pos.y], 25);
         }
     }
 
