@@ -7,7 +7,7 @@ export function convertToUrl(icon: TypesPoint) {
             return folder + 'pandus.png'
         case TypesPoint.Toilet:
             return folder + 'toilet.png'
-        case TypesPoint.Obstacle:
+        case TypesPoint.ProblemPlace:
             return folder + 'barier.png'
         case TypesPoint.TrafficLightSignal:
             return folder + 'lights.png'
@@ -27,7 +27,7 @@ export function convertToTooltipDescription(icon: TypesPoint) {
             return 'Комфортная автобусная остановка'
         case TypesPoint.Elevator:
             return 'Лифт'
-        case TypesPoint.Obstacle:
+        case TypesPoint.ProblemPlace:
             return 'Препятствие'
         case TypesPoint.TrafficLightSignal:
             return 'Светофоры со звуком'
@@ -47,7 +47,7 @@ export function convertToRGB(icon: TypesPoint){
             return "#81C784"
         case TypesPoint.TrafficLightSignal:
             return "#FFD54F"
-        case TypesPoint.Obstacle:
+        case TypesPoint.ProblemPlace:
             return "#D32F2F"
         default:
             return "#FFFFFF"

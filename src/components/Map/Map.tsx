@@ -2,7 +2,6 @@ import React, {useCallback, useEffect, useState} from 'react';
 import {LayerGroup, LayersControl, MapContainer, TileLayer, useMapEvents} from "react-leaflet";
 import styles from './map.module.scss'
 import SimplePoint from "../Points/SimplePoint";
-import StatusPoint from "../../backend/models/StatusPoint";
 import "@Styles/ovverideMapStyle.css";
 import DraggableMarker from "@Components/DraggableMarker/DraggableMarker";
 import {LatLngExpression} from "leaflet";
@@ -19,8 +18,8 @@ const Map = () => {
     function getPoints() {
         return PointController.getAllUserPoint()
     }
-    const [allPoints, setAllPoints] = useState(getPoints())
 
+    const [allPoints, setAllPoints] = useState(getPoints())
 
     const [canAdd, setCanAdd] = useState(false)
     const [isOpenModal, setIsOpenModal] = useState(false)
@@ -53,6 +52,7 @@ const Map = () => {
             }
             PointController.addPoint(point)
             setDraggablePos(null);
+            setAllPoints(getPoints())
         }
     }
     const draggable = () => {

@@ -17,7 +17,7 @@ const DraggableMarker = ({
     const [draggable, setDraggable] = useState(true);
     const [position, setPosition] = useState(startPosition);
     const markerRef = useRef(null);
-    const colorClass = `${TypesPoint[type].toLowerCase()}`;
+    const colorClass = `${type.toLowerCase()}`;
     const eventHandlers = useMemo(
         () => ({
             dragend() {
@@ -37,7 +37,8 @@ const DraggableMarker = ({
         // @ts-ignore
         const y = position.lng
         addMarker(x, y)
-    }, [addMarker])
+        console.log(position)
+    }, [position])
 
     return (
         <Marker
