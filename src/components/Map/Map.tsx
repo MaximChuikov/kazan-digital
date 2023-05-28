@@ -22,6 +22,7 @@ const Map = () => {
 
     const [allPoints, setAllPoints] = useState(getPoints())
 
+    const [map, setMap] = useState(null)
     const [canAdd, setCanAdd] = useState(false)
     const [isOpenModal, setIsOpenModal] = useState(false)
     const [draggablePos, setDraggablePos] = useState<LatLngExpression | null>(null)
@@ -88,12 +89,22 @@ const Map = () => {
         });
         return <></>
     }
+    const changePosition = (pos: { x: number, y: number }) => {
+        if(map){
+            setPosition([pos.x, pos.y]);
+            // @ts-ignore
+            map.setView([pos.x, pos.y],25);
+        }
+    }
+
     return (
         <MapContainer
             className={styles.mapContainer}
             center={position}
             minZoom={13}
             zoom={14}
+            // @ts-ignore
+            ref={setMap}
             scrollWheelZoom={false}>
             <MapEventsWrapper handleClick={addMarker}/>
             <TileLayer
@@ -101,7 +112,8 @@ const Map = () => {
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             />
             <AddMarkerBtn onClick={addBtnClick}/>
-            <SearchHeader/>
+            <SearchHeader setPosition={changePosition} createRoadMock={() => {
+            }}/>
             {modalRoot()}
             {draggable()}
             <ChangeMapStatusToRayon/>

@@ -2,22 +2,30 @@
   position: absolute;
   top: 22px;
   width: 100%;
-  z-index: 1001;
+  z-index: 999;
   justify-content: center;
   display: flex;
   flex-direction: column;
+  align-items: center;
 
   .searchBar {
-    border: 2px solid black;
-    cursor: default;
     display: flex;
+    flex-direction: column;
     width: calc(100% - 24px);
-    background: white;
     max-width: 400px;
     height: auto;
     margin-left: 12px;
     margin-right: 12px;
-    border-radius: 8px;
+    align-items: end;
+
+    .findItems {
+      width: 100%;
+      background: white;
+      display: flex;
+      border: 2px solid black;
+      cursor: default;
+      border-radius: 8px;
+    }
 
     .icon {
       padding: 5px;
@@ -34,14 +42,36 @@
       font-size: 16px;
       line-height: 28px;
     }
+
     .searchInput::placeholder {
       color: #ABB6C8;
     }
   }
-  .searchResult{
-    width: calc(100% - 24px);
+
+  .searchResult {
+    background: white;
+    margin-top: 4px;
+    width: auto;
+    padding: 4px;
+    border-radius: 8px;
+
+    button{
+      padding: 2px 16px;
+      font-size: 16px;
+      font-weight: 500;
+      line-height: 24px;
+      color: #000000;
+      background: #D9D9D9;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    .ml2{
+      margin-left: 10px;
+    }
   }
-  .result{
+
+  .result {
     text-align: center;
   }
 }
