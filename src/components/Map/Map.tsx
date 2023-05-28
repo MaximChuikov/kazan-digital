@@ -49,7 +49,7 @@ const Map = () => {
                 type: term?.type,
                 status: 1,
                 evaluations: [{
-                    userId: "test",
+                    userId: "хто_я",
                     score: term.term,
                     comment: term.description,
                     createDate: new Date()
