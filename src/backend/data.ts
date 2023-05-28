@@ -605,6 +605,73 @@ export const data = [
         "countVotesToCreate": 0,
         "countVotesToDelete": 0,
         "createDate": "2023-05-28T08:29:23.920Z"
+    },
+    {
+        "x": 55.83155337225041,
+        "y": 49.06112730503082,
+        "type": "Ramp",
+        "status": 1,
+        "description": "Пандус из дома",
+        "evaluations": [],
+        "votes": [],
+        "rating": 0,
+        "countVotesToCreate": 0,
+        "countVotesToDelete": 0,
+        "createDate": "2023-05-28T10:58:45.327Z"
+    },
+    {
+        "x": 55.83305372087455,
+        "y": 49.06110584735871,
+        "type": "TrafficLightSignal",
+        "status": 1,
+        "description": "Светофор со звуком",
+        "evaluations": [],
+        "votes": [],
+        "rating": 0,
+        "countVotesToCreate": 0,
+        "countVotesToDelete": 0,
+        "createDate": "2023-05-28T10:59:13.585Z"
+    },
+    {
+        "x": 55.83326460861173,
+        "y": 49.06168520450592,
+        "type": "TrafficLightSignal",
+        "status": 1,
+        "description": "Светофор со звуком, увеличенной длительности перехода",
+        "evaluations": [],
+        "votes": [],
+        "rating": 0,
+        "countVotesToCreate": 0,
+        "countVotesToDelete": 0,
+        "createDate": "2023-05-28T10:59:53.735Z"
+    },
+    {
+        "x": 55.83305974625436,
+        "y": 49.06219482421875,
+        "type": "Obstacle",
+        "status": 1,
+        "description": "Авария, переход для пешеходов закрыт",
+        "evaluations": [],
+        "votes": [],
+        "rating": 0,
+        "countVotesToCreate": 0,
+        "countVotesToDelete": 0,
+        "createDate": "2023-05-28T11:01:06.638Z"
+    },
+    {
+        "x": 55.83306878432227,
+        "y": 49.06161546707154,
+        "type": "Obstacle",
+        "status": 1,
+        "description": "Авария",
+        "evaluations": [],
+        "votes": [],
+        "rating": 0,
+        "countVotesToCreate": 0,
+        "countVotesToDelete": 0,
+        "createDate": "2023-05-28T11:01:32.437Z"
     }
 ]
+
+
 

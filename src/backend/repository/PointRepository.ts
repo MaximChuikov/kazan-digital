@@ -5,7 +5,7 @@ class PointRepository {
 
 
     savePoint(point : Point) : Point {
-        let points : Map<string,Point> = JSON.parse(localStorage.getItem("points")|| "") as Map<string,Point>
+        let points : Map<string,Point> = JSON.parse(localStorage.getItem("points")|| "{}") as Map<string,Point>
         // @ts-ignore
         points[(`x${point.x.toString()}y${point.y.toString()}`)] = point
         /*points.set(point.x.toString()+point.y.toString(), point)*/
@@ -15,7 +15,7 @@ class PointRepository {
     }
 
     getAll() : Array<Point> {
-        let map : Map<string,Point> = new Map(Object.entries(JSON.parse(localStorage.getItem("points") || "")));
+        let map : Map<string,Point> = new Map(Object.entries(JSON.parse(localStorage.getItem("points") || "{}")));
         return Array.from(map, ([key,value]) => (value ));
     }
 
@@ -24,12 +24,12 @@ class PointRepository {
     }
 
     findPointByCoordinate(coordinate:string) : Point {
-        const points = JSON.parse(localStorage.getItem("points") || "")
+        const points = JSON.parse(localStorage.getItem("points") || "{}")
         return points[coordinate]
     }
 
     deleteByCoordinate(coordinate:string) : Point {
-        let points: Map<string,Point> = JSON.parse(localStorage.getItem("points")|| "") as Map<string,Point>
+        let points: Map<string,Point> = JSON.parse(localStorage.getItem("points")|| "{}") as Map<string,Point>
         // @ts-ignore
         points[coordinate].status = StatusPoint.Delete
         localStorage.setItem("points",JSON.stringify(points) )
@@ -39,7 +39,7 @@ class PointRepository {
 
     constructor() {
 
-        let test = JSON.parse(localStorage.getItem("points")|| "") as Map<string,Point>
+        let test = JSON.parse(localStorage.getItem("points") || "{}") as Map<string,Point>
         if(!test)
         {
             let map =  new Map<string,Point>()

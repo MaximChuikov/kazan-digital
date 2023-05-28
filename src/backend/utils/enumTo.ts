@@ -62,6 +62,6 @@ export function convertToOpacity(rating : number ) {
         return "middle"
     }
     else {
-        return "full"
+        return "fill"
     }
 }

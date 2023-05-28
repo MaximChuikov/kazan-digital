@@ -20,6 +20,10 @@ const Map = () => {
         return PointController.getAllUserPoint()
     }
 
+    function updatePoints() {
+        setAllPoints(PointController.getAllUserPoint())
+    }
+
     const [allPoints, setAllPoints] = useState(getPoints())
 
     const [map, setMap] = useState(null)
@@ -141,7 +145,7 @@ const Map = () => {
                     <LayerGroup>
                         {
                             allPoints.filter(p => p.type === TypesPoint.Ramp).map((p, key) => (
-                                <SimplePoint key={key} {...p} />
+                                <SimplePoint point={p} key={key} updateCallBack={updatePoints} />
                             ))
                         }
                     </LayerGroup>
@@ -150,7 +154,7 @@ const Map = () => {
                     <LayerGroup>
                         {
                             allPoints.filter(p => p.type === TypesPoint.TrafficLightSignal).map((p, key) => (
-                                <SimplePoint key={key} {...p} />
+                                <SimplePoint point={p} key={key} updateCallBack={updatePoints} />
                             ))
                         }
                     </LayerGroup>
@@ -159,7 +163,7 @@ const Map = () => {
                     <LayerGroup>
                         {
                             allPoints.filter(p => p.type === TypesPoint.Elevator).map((p, key) => (
-                                <SimplePoint key={key} {...p} />
+                                <SimplePoint point={p} key={key} updateCallBack={updatePoints} />
                             ))
                         }
                     </LayerGroup>
@@ -168,7 +172,7 @@ const Map = () => {
                     <LayerGroup>
                         {
                             allPoints.filter(p => p.type === TypesPoint.Toilet).map((p, key) => (
-                                <SimplePoint key={key} {...p} />
+                                <SimplePoint point={p} key={key} updateCallBack={updatePoints} />
                             ))
                         }
                     </LayerGroup>
@@ -177,7 +181,7 @@ const Map = () => {
                     <LayerGroup>
                         {
                             allPoints.filter(p => p.type === TypesPoint.ProblemPlace).map((p, key) => (
-                                <SimplePoint key={key} {...p} />
+                                <SimplePoint point={p} key={key} updateCallBack={updatePoints} />
                             ))
                         }
                     </LayerGroup>
