@@ -12,6 +12,7 @@ import MarketModal from "@Modals/MarketModal/MarketModal";
 import AddPointModal from "../../backend/models/AddPointModal";
 import PointController from "../../backend/controllers/PointController";
 import Point from "../../backend/models/Point";
+import SearchHeader from "@Components/SearchHeader/SearchHeader";
 
 const Map = () => {
 
@@ -100,6 +101,7 @@ const Map = () => {
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             />
             <AddMarkerBtn onClick={addBtnClick}/>
+            <SearchHeader/>
             {modalRoot()}
             {draggable()}
             <ChangeMapStatusToRayon/>
