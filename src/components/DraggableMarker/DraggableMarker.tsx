@@ -37,9 +37,8 @@ const DraggableMarker = ({
         // @ts-ignore
         const y = position.lng
         addMarker(x, y)
-        console.log(position)
     }, [position])
-
+    console.log(`${styles.point} ${styles[colorClass]}`)
     return (
         <Marker
             icon={new Icon({

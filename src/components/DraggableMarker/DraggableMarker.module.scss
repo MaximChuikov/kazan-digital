@@ -1,5 +1,7 @@
 .point {
   opacity: 0.7;
+  border: 2px solid;
+  border-radius: 4px;
 
   &.ramp {
     border-color: #9575CD;
