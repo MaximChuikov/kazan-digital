@@ -12,7 +12,8 @@ const SearchHeader = ({setPosition, createRoadMock}: {
     const places = [
         {name: "Петербургская ул., 52", pos: {x: 55.780168, y: 49.133722}},
         {name: "ул. Серова, 7", pos: {x: 55.830382, y: 49.064193}},
-        {name: "ул. Гагарина, 121", pos: {x: 55.834841, y: 49.064561}}
+        {name: "ул. Гагарина, 121", pos: {x: 55.834841, y: 49.064561}},
+        {name: "тест", pos: {x: 55, y: 55}}
     ];
     const find = () => {
         if (places.map(x => x.name.toLowerCase()).includes(searchName.toLowerCase())) {

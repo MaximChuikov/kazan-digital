@@ -4,6 +4,7 @@ import Vote from "../models/Vote";
 import VoteRepository from "../repository/VoteRepository";
 import TypesVote from "../models/TypesVote";
 import StatusPoint from "../models/StatusPoint";
+import {common} from "@mui/material/colors";
 
 class PointController {
     addPoint(point : Point) {
@@ -46,7 +47,7 @@ class PointController {
         return `x${point.x.toString()}y${point.y.toString()}`
     }
 
-    addVote( vote : Vote,point: Point){
+    addVote( vote : Vote,point: Point)  : Point {
         point = this.getPoint(this.getCoordinate(point))
 
         if (!this.checkVoteUser(vote, point)) {
@@ -58,11 +59,24 @@ class PointController {
                 point.countVotesToDelete!!++
             }
 
+            console.log(point.status)
+            console.log(point.status === StatusPoint.Creat && point.countVotesToCreate!! >= 5)
+            console.log(point.status === StatusPoint.Active && point.countVotesToDelete!! > 0)
+            console.log(point.status === StatusPoint.NotActive && point.countVotesToDelete!! >= 10)
+
             if(point.status === StatusPoint.Creat && point.countVotesToCreate!! >= 5)
                 point.status = StatusPoint.Active
 
-            PointRepository.savePoint(point)
+            if(point.status === StatusPoint.Active && point.countVotesToDelete!! > 0){ //Дубляж
+                point.status = StatusPoint.NotActive
+            }
+            if(point.status === StatusPoint.NotActive && point.countVotesToDelete!! >= 10){ //Дубляж
+                return PointRepository.deleteByCoordinate(this.getCoordinate(point))
+            }
+
+            return PointRepository.savePoint(point)
         }
+        return point
     }
 
     getAllUserPoint() : Array<Point> {
