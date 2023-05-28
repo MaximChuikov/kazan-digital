@@ -34,8 +34,12 @@ const Map = () => {
         setCanAdd(true);
         setTerm(term)
     }, []);
+    const closeModalPage = () => {
+        setIsOpenModal(false);
+        setCanAdd(false);
+    }
     const modalRoot = () => {
-        return isOpenModal ? <MarketModal onClose={onModalClose}/> : <></>
+        return isOpenModal ? <MarketModal onClose={onModalClose} closeModalPage={closeModalPage}/> : <></>
     }
     const addMarkerToDB = (x: number, y: number) => {
         if (term) {

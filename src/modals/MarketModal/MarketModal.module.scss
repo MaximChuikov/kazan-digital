@@ -5,9 +5,18 @@
   z-index: 1001;
   justify-content: center;
   display: flex;
+
+  .close {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    width: 20px;
+    height: 20px;
+  }
 }
 
 .marketModal {
+  position: relative;
   cursor: default;
   display: flex;
   flex-direction: column;
@@ -80,6 +89,7 @@
         visibility: visible;
         border: 2px solid white;
       }
+
       input[type='radio']:checked:after {
         background-color: #000000;
       }

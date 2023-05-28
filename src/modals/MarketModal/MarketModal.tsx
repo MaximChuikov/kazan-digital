@@ -3,6 +3,7 @@ import styles from "./MarketModal.module.scss"
 import ProblemTypes from "../../backend/models/ProblemTypes";
 import TypesPoint from "../../backend/models/TypesPoint";
 import AddPointModal from "../../backend/models/AddPointModal";
+import * as Icon from 'react-feather';
 
 interface ModalItem {
     name: string,
@@ -11,7 +12,7 @@ interface ModalItem {
     type: TypesPoint
 }
 
-const MarketModal = ({onClose}: { onClose: (value: AddPointModal) => void }) => {
+const MarketModal = ({onClose,closeModalPage}: { onClose: (value: AddPointModal) => void,closeModalPage:()=>void }) => {
     const [selectItem, setSelectedItem] = useState<ModalItem | null>(null);
     const [step, setStep] = useState<number>(1);
     const [term, setTerm] = useState<ProblemTypes | null>(null);
@@ -39,6 +40,9 @@ const MarketModal = ({onClose}: { onClose: (value: AddPointModal) => void }) => 
         {name: "туалет", img: "/images/icons/toilet.png", color: "#B3E5FC", type: TypesPoint.Toilet},
         {name: "светофор", img: "/images/icons/lights.png", color: "#FFECB3", type: TypesPoint.TrafficLightSignal}
     ];
+    const closeModal = () => {
+        closeModalPage()
+    }
     const getAddModalText = () => {
         if (selectItem) {
             switch (selectItem!.type) {
@@ -99,6 +103,7 @@ const MarketModal = ({onClose}: { onClose: (value: AddPointModal) => void }) => 
     }
     const getFirstStep = () => {
         return (<div className={styles.marketModal}>
+            <Icon.X className={styles.close} onClick={closeModal}/>
             <span className={styles.modalText}>Добавить точку</span>
             <div className={styles.modalItems}>
                 {modals.map((x, index) => getModalItem(x, true, index))}
@@ -108,6 +113,7 @@ const MarketModal = ({onClose}: { onClose: (value: AddPointModal) => void }) => 
     }
     const getSecondStep = () => {
         return (<div className={styles.marketModal}>
+            <Icon.X className={styles.close} onClick={closeModal}/>
             <span className={styles.modalText}>Добавить точку</span>
             {getModalItem(selectItem!)}
             <input
