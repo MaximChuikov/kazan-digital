@@ -15,6 +15,7 @@ import Point from "../../backend/models/Point";
 import SearchHeader from "@Components/SearchHeader/SearchHeader";
 import {useNavigate} from "react-router-dom";
 
+
 const Map = () => {
 
     function getPoints() {
