@@ -24,9 +24,7 @@ const SearchHeader = ({setPosition, createRoadMock}: {
         }
     }
     const createRoad = () => {
-        if (searchName.length) {
-            createRoadMock()
-        }
+        createRoadMock()
     }
     return (<div className={styles.searchHeader}>
         <div className={styles.searchBar}>
