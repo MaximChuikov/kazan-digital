@@ -4,7 +4,6 @@ import Vote from "../models/Vote";
 import VoteRepository from "../repository/VoteRepository";
 import TypesVote from "../models/TypesVote";
 import StatusPoint from "../models/StatusPoint";
-import {data} from "../data";
 
 class PointController {
     addPoint(point : Point) {

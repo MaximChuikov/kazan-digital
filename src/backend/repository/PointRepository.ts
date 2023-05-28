@@ -10,6 +10,7 @@ class PointRepository {
         points[(`x${point.x.toString()}y${point.y.toString()}`)] = point
         /*points.set(point.x.toString()+point.y.toString(), point)*/
         localStorage.setItem("points",JSON.stringify(points) )
+        console.log(points)
         return point
     }
 
@@ -37,8 +38,15 @@ class PointRepository {
     }
 
     constructor() {
-        let map =  new Map<string,Point>()
-        localStorage.setItem("points",JSON.stringify(map) )
+
+        let test = JSON.parse(localStorage.getItem("points")|| "") as Map<string,Point>
+        if(!test)
+        {
+            let map =  new Map<string,Point>()
+            localStorage.setItem("points",JSON.stringify(map) )
+        }
+
+
     }
 }
 export default new PointRepository()
