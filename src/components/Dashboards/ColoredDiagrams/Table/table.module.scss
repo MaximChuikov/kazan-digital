@@ -1,0 +1,121 @@
+.tableContainer {
+  width: 100%;
+}
+
+.table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 12px;
+
+  font-family: sans-serif;
+
+  thead {
+    tr {
+      th {
+        padding: 10px 18px;
+        font-weight: normal;
+
+        &:first-child{
+          div {
+            justify-content: flex-start;
+          }
+        }
+
+        div {
+          white-space: nowrap;
+          cursor: pointer;
+          display: flex;
+          justify-content: flex-end;
+          align-items: center;
+
+          .arrowsContainer {
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            margin-left: 6px;
+            gap: 2px;
+            align-items: center;
+
+            .upArrow, .downArrow {
+              fill: #666F78;
+            }
+
+            .upArrow {
+              &.activeArrow {
+                fill: #78d64b;
+              }
+            }
+
+            .downArrow {
+              rotate: 180deg;
+
+              &.activeArrow {
+                fill: #e21a1a;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+
+  tbody {
+    tr {
+      border-radius: 5px;
+      box-shadow: 2px 6px 12px rgba(#003356, 0.2);
+      &.redRow {
+        td {
+          &:nth-child(n) {
+            border-top: 1px solid #e21a1a;
+            border-bottom: 1px solid #e21a1a;
+          }
+          &:first-child {
+            border-left: 1px solid #e21a1a;
+          }
+          &:last-child {
+            border-right: 1px solid #e21a1a;
+          }
+        }
+      }
+      td {
+        position: relative;
+        padding: 20px 18px;
+
+        &:first-child {
+          border-radius: 5px 0 0 5px;
+        }
+        &:last-child {
+          border-radius: 0 5px 5px 0;
+        }
+
+        &:first-child{
+          div {
+            justify-content: flex-start;
+          }
+        }
+        div {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          justify-content: flex-end;
+          .stats {
+            margin-left: 5px;
+            display: flex;
+            font-size: 14px;
+
+            .arrow {
+              fill: #78d64b;
+              font-size: 14px;
+
+              &.redArr {
+                rotate: 180deg;
+                fill: #e21a1a;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -5,6 +5,9 @@ import {Icon} from "leaflet";
 import {convertToOpacity, convertToTooltipDescription, convertToUrl} from "../../backend/utils/enumTo";
 import styles from "./point.module.scss"
 import TypesPoint from "../../backend/models/TypesPoint";
+import EvaluationController from "../../backend/controllers/EvaluationController";
+import PointController from "../../backend/controllers/PointController";
+import TypesVote from "../../backend/models/TypesVote";
 
 const SimplePoint = (point: Point) => {
 
@@ -46,14 +49,35 @@ const SimplePoint = (point: Point) => {
                             {
                                 point.type === TypesPoint.Obstacle ? (
                                     <div className={styles.buttonsContainer}>
-                                        <button>Да, это так</button>
-                                        <button>Проблемы нет</button>
+                                        <button onClick={() => PointController.addVote({
+                                            userId: "хто_я",
+                                            typeVote: TypesVote.Creation
+                                        }, point)}>Да, это так</button>
+                                        <button onClick={() => PointController.addVote({
+                                            userId: "хто_я",
+                                            typeVote: TypesVote.Removal
+                                        }, point)}>Проблемы нет</button>
                                     </div>
                                 ) : (
                                     <div className={styles.buttonsContainer}>
-                                        <button>Да, это так</button>
-                                        <button>Да, но не работает</button>
-                                        <button>Проблемы нет</button>
+                                        <button onClick={() => EvaluationController.addEvaluation({
+                                            createDate: new Date(),
+                                            comment: "Да, это так",
+                                            score: 2,
+                                            userId: "хто_я"
+                                        }, point)}>Да, это так</button>
+                                        <button onClick={() => EvaluationController.addEvaluation({
+                                            createDate: new Date(),
+                                            comment: "Да, но не работает",
+                                            score: 1,
+                                            userId: "хто_я"
+                                        }, point)}>Да, но не работает</button>
+                                        <button onClick={() => EvaluationController.addEvaluation({
+                                            createDate: new Date(),
+                                            comment: "Да, но не работает",
+                                            score: 0,
+                                            userId: "хто_я"
+                                        }, point)}>Проблемы нет</button>
                                     </div>
                                 )
                             }
