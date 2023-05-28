@@ -4,6 +4,7 @@ import Vote from "../models/Vote";
 import VoteRepository from "../repository/VoteRepository";
 import TypesVote from "../models/TypesVote";
 import StatusPoint from "../models/StatusPoint";
+import {data} from "../data";
 
 class PointController {
     addPoint(point : Point) {
@@ -73,6 +74,35 @@ class PointController {
         return !!point.votes.find(value => value.userId===vote.userId)
     }
 
+    constructor() {
+
+        const typeMap = new Map<string,number>([
+            ["Ramp",0],
+            ["Elevator", 1],
+            ["TrafficLightSignal", 2],
+            ["Toilet", 3],
+            ["ComfortableBusStation", 4],
+            ["Obstacle", 5]
+        ])
+        for (let i of data){
+            let point :  Point = {
+                x: i.x,
+                y: i.y,
+                // @ts-ignore
+                type : typeMap[i.type],
+                status : 1,
+                description : i.description,
+                evaluations : i.evaluations,
+                votes : i.votes,
+                rating  : 0,
+                countVotesToCreate : 0,
+                countVotesToDelete : 0,
+                createDate: new Date()
+            }
+            this.addPoint(point)
+        }
+
+    }
 
 }
 
