@@ -16,10 +16,16 @@ const MarketModal = ({onClose}: { onClose: (value: AddPointModal) => void }) => 
     const [step, setStep] = useState<number>(1);
     const [term, setTerm] = useState<ProblemTypes | null>(null);
     const [description, setDescription] = useState<string>("");
+
     const terms = [
         {value: ProblemTypes.low, text: "несколько часов"},
         {value: ProblemTypes.medium, text: "несколько дней"},
         {value: ProblemTypes.hard, text: "дольше"}
+    ];
+    const goodTerms = [
+        {value: ProblemTypes.low, text: "хорошее"},
+        {value: ProblemTypes.medium, text: "не очень, но пользоваться можно"},
+        {value: ProblemTypes.hard, text: "пользоваться невозможно"}
     ];
     const modals = [
         {name: "пандус", img: "/images/icons/pandus.png", color: "#B39DDB", type: TypesPoint.Ramp},
@@ -33,17 +39,30 @@ const MarketModal = ({onClose}: { onClose: (value: AddPointModal) => void }) => 
         {name: "туалет", img: "/images/icons/toilet.png", color: "#B3E5FC", type: TypesPoint.Toilet},
         {name: "светофор", img: "/images/icons/lights.png", color: "#FFECB3", type: TypesPoint.TrafficLightSignal}
     ];
+    const getAddModalText = () => {
+        if (selectItem) {
+            switch (selectItem!.type) {
+                case TypesPoint.ProblemPlace:
+                    return "Ожидаемый срок препятствия"
+                default:
+                    return "качество " + selectItem.name + "а"
+            }
+        } else {
+            return "";
+        }
+    }
     const saveSelectItem = () => {
         if (selectItem) {
             setStep(2);
         }
     }
     const saveMarker = () => {
-        if (term && selectItem) {
+        if (term !== null && selectItem) {
             const result = {
                 type: selectItem.type,
                 description: description,
-                term: term
+                term: term,
+                image: selectItem.img
             }
             onClose(result)
         }
@@ -73,7 +92,7 @@ const MarketModal = ({onClose}: { onClose: (value: AddPointModal) => void }) => 
         }
         return (
             <div className={styles.radioItem} key={index.toString()}>
-                <input type="radio" name={"term"} id={value} value={value} onClick={changeTerm}/>
+                <input type="radio" name={"term"} id={value.toString()} value={value} onClick={changeTerm}/>
                 <label>{text}</label>
             </div>
         )
@@ -97,9 +116,12 @@ const MarketModal = ({onClose}: { onClose: (value: AddPointModal) => void }) => 
                 value={description}
                 onChange={e => setDescription(e.target.value)}
             />
-            <span className={styles.modalDescription}>Ожидаемый срок препятствия</span>
+            <span className={styles.modalDescription}>{getAddModalText()}</span>
             <fieldset className={styles.radioSet}>
-                {terms.map((x, index) => getRadioItem(x.value, x.text, index))}
+                {selectItem?.type === TypesPoint.ProblemPlace ?
+                    terms.map((x, index) => getRadioItem(x.value, x.text, index)) :
+                    goodTerms.map((x, index) => getRadioItem(x.value, x.text, index))
+                }
             </fieldset>
             <button className={styles.modalBtn} onClick={saveMarker}>Сохранить</button>
         </div>)

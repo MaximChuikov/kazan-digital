@@ -1,8 +1,9 @@
 import React, {useCallback, useMemo, useRef, useState} from "react";
 import {Marker, Popup} from "react-leaflet";
-import {LatLngExpression} from "leaflet";
+import {Icon, LatLngExpression} from "leaflet";
+import styles from "./DraggableMarker.module.scss";
 
-const DraggableMarker = ({startPosition}: { startPosition: LatLngExpression }) => {
+const DraggableMarker = ({startPosition,img}: { startPosition: LatLngExpression,img:string }) => {
     const [draggable, setDraggable] = useState(true)
     const [position, setPosition] = useState(startPosition)
     const markerRef = useRef(null)
@@ -24,6 +25,11 @@ const DraggableMarker = ({startPosition}: { startPosition: LatLngExpression }) =
 
     return (
         <Marker
+            icon={new Icon({
+                iconUrl: img,
+                iconSize: [30, 30],
+                className: styles.point
+            })}
             draggable={draggable}
             eventHandlers={eventHandlers}
             position={position}

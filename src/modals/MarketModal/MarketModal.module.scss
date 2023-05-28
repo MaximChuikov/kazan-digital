@@ -16,7 +16,7 @@
   width: calc(100% - 24px);
   background: white;
   max-width: 400px;
-  height: 320px;
+  height: auto;
   padding: 16px;
   margin-left: 12px;
   margin-right: 12px;
@@ -63,6 +63,7 @@
     width: 100%;
 
     .radioItem {
+      margin-left: 2px;
       display: flex;
       align-items: center;
 

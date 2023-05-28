@@ -9,23 +9,25 @@ import {LatLngExpression} from "leaflet";
 import AddMarkerBtn from "@Components/AddMarkerBtn/AddMarkerBtn";
 import TypesPoint from "../../backend/models/TypesPoint";
 import MarketModal from "@Modals/MarketModal/MarketModal";
+import AddPointModal from "../../backend/models/AddPointModal";
 
 const Map = () => {
     const [canAdd, setCanAdd] = useState(false)
     const [isOpenModal, setIsOpenModal] = useState(false)
     const [draggablePos, setDraggablePos] = useState<LatLngExpression | null>(null)
     const [position, setPosition] = useState<LatLngExpression>([55.7887, 49.1221]);
-
+    const [term, setTerm] = useState<AddPointModal | null>(null)
     const addBtnClick = useCallback(() => setIsOpenModal(true), []);
-    const onModalClose = useCallback((term:string) => {
+    const onModalClose = useCallback((term: AddPointModal) => {
         setIsOpenModal(false);
         setCanAdd(true);
+        setTerm(term)
     }, []);
     const modalRoot = () => {
         return isOpenModal ? <MarketModal onClose={onModalClose}/> : <></>
     }
     const draggable = () => {
-        return draggablePos === null ? <></> : <DraggableMarker startPosition={draggablePos}/>
+        return draggablePos && term ? <DraggableMarker startPosition={draggablePos} img={term.image}/> : <></>
     }
     const addMarker = useCallback((e: any) => {
         if (canAdd) {
