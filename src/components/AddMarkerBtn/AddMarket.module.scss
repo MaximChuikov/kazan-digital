@@ -3,6 +3,9 @@
   top: 89px;
   left: 0;
   z-index: 1001;
+  @media screen and (max-width: 460px) {
+    top: 190px !important;
+  }
 }
 
 .addMarketBtn {
@@ -14,6 +17,7 @@
   width: 32px;
   height: 32px;
   margin-left: 12px;
+
   img {
     width: 30px;
     height: 30px;
@@ -35,7 +39,9 @@
   top: 90px;
   right: 0;
   z-index: 1000;
-
+  @media screen and (max-width: 460px) {
+    top: 190px !important;
+  }
   .addMarketText {
     margin-right: 8px;
   }
