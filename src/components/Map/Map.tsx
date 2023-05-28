@@ -13,6 +13,7 @@ import AddPointModal from "../../backend/models/AddPointModal";
 import PointController from "../../backend/controllers/PointController";
 import Point from "../../backend/models/Point";
 import SearchHeader from "@Components/SearchHeader/SearchHeader";
+import {useNavigate} from "react-router-dom";
 
 const Map = () => {
 
@@ -25,7 +26,7 @@ const Map = () => {
     }
 
     const [allPoints, setAllPoints] = useState(getPoints())
-
+    const navigate = useNavigate()
     const [map, setMap] = useState(null)
     const [isVisibleMarker, setIsVisibleMarker] = useState(false)
     const [canAdd, setCanAdd] = useState(false)
@@ -136,6 +137,7 @@ const Map = () => {
             />
             <AddMarkerBtn onClick={addBtnClick}/>
             <SearchHeader setPosition={changePosition} createRoadMock={() => {
+                navigate('/route')
             }}/>
             {modalRoot()}
             {draggable()}
