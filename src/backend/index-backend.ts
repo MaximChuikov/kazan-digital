@@ -17,12 +17,14 @@ import {data} from "./data";
     ["Obstacle", 5]
 ])*/
 for (let i of data){
+
     let point :  Point = {
         x: i.x,
         y: i.y,
         type : i.type as TypesPoint ,
         status : 1,
         description : i.description,
+        // @ts-ignore
         evaluations : i.evaluations,
         votes : i.votes,
         rating  : 0,
@@ -60,6 +62,19 @@ let point2 : Point = {
     countVotesToDelete : 9,
     createDate: new Date(2002,5,20)
 }
+let point3 : Point = {
+    x : 55,
+    y : 55,
+    type : TypesPoint.Ramp,
+    status : StatusPoint.Active,
+    description : "Описание",
+    rating : 5,
+    evaluations : new Array<Evaluation>(),
+    votes : new Array<Vote>(),
+    countVotesToCreate : 4,
+    countVotesToDelete : 10,
+    createDate: new Date(2002,5,20)
+}
 let evaluation1 : Evaluation  ={
     userId : "user",
     score : 2,
@@ -87,6 +102,7 @@ let vote4 : Vote  ={
     typeVote : TypesVote.Removal
 }
 PointController.addPoint(point1)
+PointController.addPoint(point3)
 PointController.addPoint(point2)
 PointController.addVote(vote1,point2)
 PointController.addVote(vote2,point2)
