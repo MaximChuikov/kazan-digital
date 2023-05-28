@@ -1,3 +1,27 @@
-.point{
+.point {
   opacity: 0.7;
+
+  &.ramp {
+    border-color: #9575CD;
+  }
+
+  &.toilet {
+    border-color: #4FC3F7;
+  }
+
+  &.comfortablebusstation {
+    border-color: #4DB6AC;
+  }
+
+  &.elevator {
+    border-color: #81C784;
+  }
+
+  &.trafficlightsignal {
+    border-color: #4FC3F7;
+  }
+
+  &.obstacle {
+    border-color: #D32F2F;
+  }
 }

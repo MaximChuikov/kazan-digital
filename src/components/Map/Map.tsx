@@ -11,6 +11,8 @@ import TypesPointList from "../../backend/models/TypesPoint";
 import ChangeMapStatusToRayon from "@Components/AddMarkerBtn/ChangeMapStatusToRayon";
 import MarketModal from "@Modals/MarketModal/MarketModal";
 import AddPointModal from "../../backend/models/AddPointModal";
+import PointController from "../../backend/controllers/PointController";
+import Point from "../../backend/models/Point";
 
 const Map = () => {
     const [canAdd, setCanAdd] = useState(false)
@@ -27,8 +29,31 @@ const Map = () => {
     const modalRoot = () => {
         return isOpenModal ? <MarketModal onClose={onModalClose}/> : <></>
     }
+    const addMarkerToDB = (x: number, y: number) => {
+        if (term) {
+            let point: Point = {
+                x: x,
+                y: y,
+                type: term?.type,
+                status: 1,
+                description: term.description,
+                evaluations: [],
+                votes: [],
+                rating: term.term,
+                countVotesToCreate: 0,
+                countVotesToDelete: 0,
+                createDate: new Date()
+            }
+            PointController.addPoint(point)
+            setDraggablePos(null);
+        }
+    }
     const draggable = () => {
-        return draggablePos && term ? <DraggableMarker startPosition={draggablePos} img={term.image}/> : <></>
+        return draggablePos && term ?
+            <DraggableMarker startPosition={draggablePos}
+                             img={term.image}
+                             addMarker={addMarkerToDB}
+                             type={term.type}/> : <></>
     }
     const addMarker = useCallback((e: any) => {
         if (canAdd) {
@@ -70,7 +95,7 @@ const Map = () => {
             <AddMarkerBtn onClick={addBtnClick}/>
             {modalRoot()}
             {draggable()}
-            <ChangeMapStatusToRayon />
+            <ChangeMapStatusToRayon/>
             <LayersControl position="topright">
                 <LayersControl.Overlay name="Пандусы" checked>
                     <LayerGroup>
