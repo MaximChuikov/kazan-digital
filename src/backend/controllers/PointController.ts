@@ -4,7 +4,6 @@ import Vote from "../models/Vote";
 import VoteRepository from "../repository/VoteRepository";
 import TypesVote from "../models/TypesVote";
 import StatusPoint from "../models/StatusPoint";
-import {common} from "@mui/material/colors";
 
 class PointController {
     addPoint(point : Point) {
@@ -59,11 +58,6 @@ class PointController {
                 point.countVotesToDelete!!++
             }
 
-            console.log(point.status)
-            console.log(point.status === StatusPoint.Creat && point.countVotesToCreate!! >= 5)
-            console.log(point.status === StatusPoint.Active && point.countVotesToDelete!! > 0)
-            console.log(point.status === StatusPoint.NotActive && point.countVotesToDelete!! >= 10)
-
             if(point.status === StatusPoint.Creat && point.countVotesToCreate!! >= 5)
                 point.status = StatusPoint.Active
 
@@ -71,7 +65,7 @@ class PointController {
                 point.status = StatusPoint.NotActive
             }
             if(point.status === StatusPoint.NotActive && point.countVotesToDelete!! >= 10){ //Дубляж
-                return PointRepository.deleteByCoordinate(this.getCoordinate(point))
+                point.status = StatusPoint.Delete
             }
 
             return PointRepository.savePoint(point)
@@ -80,6 +74,8 @@ class PointController {
     }
 
     getAllUserPoint() : Array<Point> {
+        console.log(PointRepository.getAllUserPoint())
+        console.log(PointRepository.getAllUserPoint().length)
         return PointRepository.getAllUserPoint()
     }
 
